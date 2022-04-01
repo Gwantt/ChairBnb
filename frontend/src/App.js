@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import LoginFormPage from './components/LoginFormPage';
 import * as sessionActions from './store/session'
 import SingupFormPage from './components/SignUpForm';
-
+import Navigation from './components/Navigation';
 
 function App() {
   const dispath = useDispatch();
@@ -13,17 +13,22 @@ function App() {
     dispath(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   })
   return (
-    <Switch>
-      <Route exact path='/'>
-        <h1>Home Page</h1>
-      </Route>
-      <Route path='/login'>
-        <LoginFormPage />
-      </Route>
-      <Route path='/signup'>
-        <SingupFormPage />
-      </Route>
-    </Switch>
+    <>
+      <Navigation isLoaded={isLoaded} />
+      {isLoaded && (
+        <Switch>
+          <Route exact path='/'>
+            <h1>Home Page</h1>
+          </Route>
+          <Route path='/login'>
+            <LoginFormPage />
+          </Route>
+          <Route path='/signup'>
+            <SingupFormPage />
+          </Route>
+        </Switch>
+      )}
+    </>
   );
 }
 

@@ -3,6 +3,7 @@ import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import './LoginForm.css';
+import { motion } from 'framer-motion';
 
 function LoginFormPage() {
     const dispatch = useDispatch();
@@ -24,13 +25,34 @@ function LoginFormPage() {
             })
     }
 
+    const item = {
+        hidden: { opacity: 0 },
+        show: { opacity: 1 }
+    }
+
+    const container = {
+        hidden: { opacity: 0 },
+        show: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 1
+            }
+        }
+    }
+
+
     return (
-        <div className='container'>
+        <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className='container'
+        >
             <div className='formDiv'>
                 <form onSubmit={handleSubmit}>
-                    <ul className='errors'>
-                        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                    </ul>
+                    <motion.ul variants={container} initial='hidden' animate='show' className='errors'>
+                        {errors.map((error, idx) => <motion.li variants={item} key={idx}>{error}</motion.li>)}
+                    </motion.ul>
                     <label className='label formItem'>
                         Username or Email
                         <input
@@ -52,7 +74,7 @@ function LoginFormPage() {
                     <button className='buttons grow' type='submit'>Log In</button>
                 </form>
             </div>
-        </div>
+        </motion.div>
     )
 
 
