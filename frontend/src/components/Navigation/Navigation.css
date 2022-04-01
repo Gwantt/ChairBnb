@@ -1,12 +1,48 @@
 .active {
+    color: #5c5470;
+    box-shadow: none;
+    top: 5px;
+}
+
+/* a:active {
+    box-shadow: none;
+    top: 5px;
+} */
+
+h1, h2, h3, h4, h5, h6, li {
     color: #dbd8e3;
 }
 
 a {
-    color: #5c5470;
+    position: relative;
+    background-color: #dbd8e3;
+    color: #352F44;
+    box-shadow: 0 5px 0 #5c5470;
     padding: 5px;
+    text-decoration: none;
+    margin: 0px 1px;
 }
 
 ul {
     list-style-type: none;
+}
+
+button {
+    color: #5c5470;
+    background-color: #dbd8e3;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.grow {
+    transition: all .2s ease-in-out;
+}
+
+.grow:hover {
+    transform: scale(1.1);
+}
+
+button:hover {
+    cursor: pointer;
 }
