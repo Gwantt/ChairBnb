@@ -19,6 +19,7 @@ function Navigation({ isLoaded }) {
             <>
                 <NavLink activeClassName='active' className='aButton' to='/login'>Log In</NavLink>
                 <NavLink activeClassName='active' className='aButton' to='/signup'>Sign Up</NavLink>
+                <DemoUser />
             </>
         )
     }
@@ -28,7 +29,6 @@ function Navigation({ isLoaded }) {
             <li>
                 <NavLink activeClassName='active' className='aButton' exact to='/'>Home</NavLink>
                 {isLoaded && sessionLinks}
-                <DemoUser />
             </li>
         </ul>
     )
