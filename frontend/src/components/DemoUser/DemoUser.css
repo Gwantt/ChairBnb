@@ -1,4 +1,7 @@
 #demoForm {
+    display: inline;
+}
 
-    margin-left: 13rem;
+.demoForm {
+    display: inline;
 }

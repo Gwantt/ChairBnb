@@ -14,7 +14,7 @@ const DemoUser = () => {
 
     return (
         <div id='demoForm'>
-            <form onSubmit={handleSubmit}>
+            <form className='demoForm' onSubmit={handleSubmit}>
                 <button className='buttons grow' type='submit'>Demo User</button>
             </form>
         </div>
