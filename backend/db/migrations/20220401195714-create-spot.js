@@ -19,6 +19,18 @@ module.exports = {
         type: Sequelize.STRING,
         // unique: true
       },
+      image1: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      image2: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      image3: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
       city: {
         allowNull: false,
         type: Sequelize.STRING
