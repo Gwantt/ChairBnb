@@ -5,6 +5,10 @@
     align-items: center;
 }
 
+p {
+    margin: 5px;
+}
+
 .chairDiv {
     display: flex;
     justify-content: flex-start;

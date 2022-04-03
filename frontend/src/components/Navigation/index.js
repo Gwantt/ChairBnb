@@ -19,6 +19,7 @@ function Navigation({ isLoaded }) {
             <>
                 <NavLink activeClassName='active' className='aButton' to='/login'>Log In</NavLink>
                 <NavLink activeClassName='active' className='aButton' to='/signup'>Sign Up</NavLink>
+                <NavLink activeClassName='active' className='aButton' to='/chairs'>Chair Listings</NavLink>
                 <DemoUser />
             </>
         )
