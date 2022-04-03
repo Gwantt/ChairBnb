@@ -1,18 +1,18 @@
 .chairCard {
-    height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
 .chairDiv {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     background-color: #dbd8e3;
     margin: 20px 620px;
     width: 50vw;
-    padding: 50px;
+    padding: 10px;
     box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
     border-radius: 10px;
     font-weight: 600;
@@ -26,6 +26,10 @@
     font-weight: bold;
     color: #dbd8e3;
 } */
+
+img {
+    border-radius: 10px;
+}
 
 .formItem {
     display: flex;
