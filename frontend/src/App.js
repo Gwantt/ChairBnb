@@ -3,8 +3,9 @@ import { useDispatch } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import LoginFormPage from './components/LoginFormPage';
 import * as sessionActions from './store/session'
-import SingupFormPage from './components/SignUpForm';
 import Navigation from './components/Navigation';
+import SignupFormPage from './components/SignUpForm';
+import Chairs from './components/Chairs';
 
 function App() {
   const dispath = useDispatch();
@@ -12,6 +13,7 @@ function App() {
   useEffect(() => {
     dispath(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   })
+
   return (
     <>
       <Navigation isLoaded={isLoaded} />
@@ -24,7 +26,13 @@ function App() {
             <LoginFormPage />
           </Route>
           <Route path='/signup'>
-            <SingupFormPage />
+            <SignupFormPage />
+          </Route>
+          <Route path='/chairs'>
+            <Chairs />
+          </Route>
+          <Route>
+            <h2>Page Not Found</h2>
           </Route>
         </Switch>
       )}
