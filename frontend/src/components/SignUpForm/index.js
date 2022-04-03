@@ -5,7 +5,7 @@ import * as sessionActions from '../../store/session';
 import './SignupForm.css'
 import { motion } from 'framer-motion';
 
-const SingupFormPage = () => {
+const SignupFormPage = () => {
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
     const [email, setEmail] = useState('');
@@ -100,4 +100,4 @@ const SingupFormPage = () => {
     )
 }
 
-export default SingupFormPage
+export default SignupFormPage

@@ -5,10 +5,14 @@ const { User } = require('../../db/models');
 const { restoreUser, requireAuth } = require('../../utils/auth.js');
 const sessionRouter = require('./session');
 const usersRouter = require('./users')
+const chairsRouter = require('./chairsHome')
+
 
 router.use('/session', sessionRouter);
 
 router.use('/users', usersRouter);
+
+router.use('/chairs', chairsRouter);
 
 router.post('/test', (req, res) => {
   res.json({ requestBody: req.body });
