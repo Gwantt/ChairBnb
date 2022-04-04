@@ -14,7 +14,7 @@ const ChairForm = () => {
 
     const [address, setAddress] = useState('');
     const [city, setCity] = useState('');
-    const [state, setState] = useState(null);
+    const [state, setState] = useState('');
     const [country, setCountry] = useState('');
     const [image1, setImage1] = useState('');
     const [image2, setImage2] = useState('');

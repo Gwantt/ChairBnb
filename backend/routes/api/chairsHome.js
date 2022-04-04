@@ -27,7 +27,7 @@ router.post('/', asyncHandler(async(req, res, next) => {
         price
     });
 
-    res.redirect(`/chairs/${chair.id}`);
+    res.json(chair)
 
 }))
 
