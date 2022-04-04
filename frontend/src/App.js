@@ -6,6 +6,8 @@ import * as sessionActions from './store/session'
 import Navigation from './components/Navigation';
 import SignupFormPage from './components/SignUpForm';
 import Chairs from './components/Chairs';
+import HomePage from './components/homePage';
+import SelectedChair from './components/SelectedChair';
 
 function App() {
   const dispath = useDispatch();
@@ -20,7 +22,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path='/'>
-            <h1>Home Page</h1>
+            <HomePage />
           </Route>
           <Route path='/login'>
             <LoginFormPage />
@@ -28,8 +30,11 @@ function App() {
           <Route path='/signup'>
             <SignupFormPage />
           </Route>
-          <Route path='/chairs'>
+          <Route exact path='/chairs'>
             <Chairs />
+          </Route>
+          <Route path='/chairs/:id'>
+            <SelectedChair />
           </Route>
           <Route>
             <h2>Page Not Found</h2>

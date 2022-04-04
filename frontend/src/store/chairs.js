@@ -5,6 +5,15 @@ const load = chairs => ({
     chairs
 })
 
+export const getChair = id => async dispatch => {
+    const res = await fetch(`/api/chairs/${id}`);
+    if(res.ok) {
+        const chair = await res.json();
+        dispatch(load([chair]))
+    }
+
+}
+
 
 export const getChairs = () => async dispatch =>{
     const res = await fetch('/api/chairs/');
@@ -12,6 +21,15 @@ export const getChairs = () => async dispatch =>{
     if(res.ok) {
         const chairs = await res.json();
         dispatch(load(chairs))
+    }
+}
+
+export const getHomePage = () => async dispatch => {
+    const res = await fetch('/api/chairs/home');
+
+    if(res.ok) {
+        const homeChairs = await res.json();
+        dispatch(load(homeChairs))
     }
 }
 
