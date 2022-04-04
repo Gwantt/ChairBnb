@@ -4,7 +4,7 @@ const db = require('../../db/models');
 // const csrf = require('csurf');
 // const csrfProtection = csrf({ cookie: true });
 
-//? Chairs
+//? Chair /api/chairs/
 router.get('/', asyncHandler(async (req, res, next) => {
     const chairs = await db.Spot.findAll()
     // console.log(typeof chairs[0])
@@ -31,7 +31,7 @@ router.post('/', asyncHandler(async(req, res, next) => {
 
 }))
 
-
+// /api/chairs/home
 router.get('/home', asyncHandler(async(req, res, next) => {
     const homeChairs = await db.Spot.findAll({
         limit: 5

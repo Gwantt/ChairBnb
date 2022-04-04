@@ -11,10 +11,10 @@ const ChairForm = () => {
     const history = useHistory()
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
-    
+
     const [address, setAddress] = useState('');
     const [city, setCity] = useState('');
-    const [state, setState] = useState('');
+    const [state, setState] = useState(null);
     const [country, setCountry] = useState('');
     const [image1, setImage1] = useState('');
     const [image2, setImage2] = useState('');
@@ -23,6 +23,10 @@ const ChairForm = () => {
     const [price, setPrice] = useState(0);
 
     console.log('Session User -->', sessionUser);
+
+    if(!sessionUser) {
+        history.push('/chairs');
+    }
 
     const handleSubmit = async e => {
 
@@ -77,22 +81,23 @@ const ChairForm = () => {
                     onChange={e => setCountry(e.target.value)}
                 />
                 <input
-                    type='image'
-                    placeholder='URL Address'
+                    type='input'
+                    placeholder='First Image'
+                    required
                     value={image1}
                     onChange={e => setImage1(e.target.value)}
                 />
                 <input
-                    type='image'
-                    placeholder='URL Address'
+                    type='input'
+                    placeholder='Second Image'
                     value={image2}
                     onChange={e => setImage2(e.target.value)}
                 />
                 <input
-                    type='image'
-                    placeholder='URL Address'
-                    value={image2}
-                    onChange={e => setImage2(e.target.value)}
+                    type='input'
+                    placeholder='Third Image'
+                    value={image3}
+                    onChange={e => setImage3(e.target.value)}
                 />
                 <input
                     type='input'
