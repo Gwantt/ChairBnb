@@ -21,8 +21,10 @@ router.get('/home', asyncHandler(async(req, res, next) => {
 router.get('/:id', asyncHandler(async(req, res, next) => {
 
     const id = parseInt(req.params.id, 10)
-    const chair = await db.Spot.findByPk(id)
-    
+    const chair = await db.Spot.findByPk(id, {
+        include: db.User,
+    })
+    console.log(chair);
     return res.json(chair);
 }))
 
