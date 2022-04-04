@@ -1,3 +1,5 @@
+import { csrfFetch } from "./csrf";
+
 const LOAD = 'chairs/LOAD';
 const ADD_CHAIR = 'chairs/ADD_CHAIR';
 
@@ -22,7 +24,7 @@ export const getChair = id => async dispatch => {
 }
 
 export const createChair = chair => async dispatch => {
-    const res = await fetch('/api/chairs', {
+    const res = await csrfFetch('/api/chairs/', {
         method: 'POST',
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(chair)

@@ -7,9 +7,11 @@ import { motion } from 'framer-motion';
 import { useHistory } from 'react-router-dom';
 
 const ChairForm = () => {
+
     const history = useHistory()
     const dispatch = useDispatch();
-
+    const sessionUser = useSelector(state => state.session.user);
+    
     const [address, setAddress] = useState('');
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
@@ -20,9 +22,12 @@ const ChairForm = () => {
     const [name, setName] = useState('');
     const [price, setPrice] = useState(0);
 
+    console.log('Session User -->', sessionUser);
+
     const handleSubmit = async e => {
 
         const payload = {
+            userId: sessionUser.id,
             address,
             city,
             state,
@@ -45,7 +50,6 @@ const ChairForm = () => {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <input type='hidden' name='_csrf' value={csrfToken}/>
                 <input
                     type='input'
                     placeholder='Address'
@@ -102,7 +106,7 @@ const ChairForm = () => {
                     value={price}
                     onChange={e => setPrice(e.target.value)}
                 />
-                <button type='submit'>Create New Pokemon</button>
+                <button type='submit'>Create New Chair</button>
                 <button type='button' onClick={() => history.push('/')}>Cancel</button>
             </form>
         </div>

@@ -1,8 +1,8 @@
 const router = require('express').Router();
 const asyncHandler = require('express-async-handler');
 const db = require('../../db/models');
-const csrf = require('csurf');
-const csrfProtection = csrf({ cookie: true });
+// const csrf = require('csurf');
+// const csrfProtection = csrf({ cookie: true });
 
 //? Chairs
 router.get('/', asyncHandler(async (req, res, next) => {
@@ -12,10 +12,10 @@ router.get('/', asyncHandler(async (req, res, next) => {
 }))
 
 
-router.post('/', csrfProtection, asyncHandler(async(req, res, next) => {
-    // const userId =
-    const { address, city, state, country, image1, image2, image3, name, price } = req.body
+router.post('/', asyncHandler(async(req, res, next) => {
+    const { userId, address, city, state, country, image1, image2, image3, name, price } = req.body
     const chair = await db.Spot.create({
+        userId,
         address,
         city,
         state,
@@ -24,8 +24,7 @@ router.post('/', csrfProtection, asyncHandler(async(req, res, next) => {
         image2,
         image3,
         name,
-        price,
-        csrfToken: req.csrfToken()
+        price
     });
 
     res.redirect(`/chairs/${chair.id}`);
