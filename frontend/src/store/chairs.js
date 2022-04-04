@@ -1,8 +1,15 @@
 const LOAD = 'chairs/LOAD';
+const ADD_CHAIR = 'chairs/ADD_CHAIR';
+
 
 const load = chairs => ({
     type: LOAD,
     chairs
+})
+
+const addChair = chair => ({
+    type: ADD_CHAIR,
+    chair
 })
 
 export const getChair = id => async dispatch => {
@@ -12,6 +19,20 @@ export const getChair = id => async dispatch => {
         dispatch(load([chair]))
     }
 
+}
+
+export const createChair = chair => async dispatch => {
+    const res = await fetch('/api/chairs', {
+        method: 'POST',
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(chair)
+    })
+
+    if(res.ok) {
+        const chair = await res.json();
+        dispatch(addChair(chair));
+        return chair;
+    }
 }
 
 
@@ -47,6 +68,23 @@ const chairReducer = (state = initialState, action) => {
             return {
                 ...allChairs,
                 ...state.chairs
+            }
+        case ADD_CHAIR:
+            if(!state[action.chair.id]) {
+                const newState = {
+                    ...state,
+                    [action.chair.id]: action.chair
+                };
+                const chairList = newState.chairs.map(id => newState[id]);
+                chairList.push(action.chair);
+                return newState;
+            }
+            return {
+                ...state,
+                [action.chair.id]: {
+                    ...state[action.chair.id],
+                    ...action.chair
+                }
             }
         default:
             return state;

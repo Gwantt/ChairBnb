@@ -8,6 +8,7 @@ import SignupFormPage from './components/SignUpForm';
 import Chairs from './components/Chairs';
 import HomePage from './components/homePage';
 import SelectedChair from './components/SelectedChair';
+import ChairForm from './components/ChairForm';
 
 function App() {
   const dispath = useDispatch();
@@ -35,6 +36,9 @@ function App() {
           </Route>
           <Route path='/chairs/:id'>
             <SelectedChair />
+          </Route>
+          <Route path='/create'>
+            <ChairForm />
           </Route>
           <Route>
             <h2>Page Not Found</h2>

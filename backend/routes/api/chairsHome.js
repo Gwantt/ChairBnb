@@ -1,12 +1,35 @@
 const router = require('express').Router();
 const asyncHandler = require('express-async-handler');
 const db = require('../../db/models');
+const csrf = require('csurf');
+const csrfProtection = csrf({ cookie: true });
 
 //? Chairs
 router.get('/', asyncHandler(async (req, res, next) => {
     const chairs = await db.Spot.findAll()
     // console.log(typeof chairs[0])
     return res.json(chairs)
+}))
+
+
+router.post('/', csrfProtection, asyncHandler(async(req, res, next) => {
+    // const userId =
+    const { address, city, state, country, image1, image2, image3, name, price } = req.body
+    const chair = await db.Spot.create({
+        address,
+        city,
+        state,
+        country,
+        image1,
+        image2,
+        image3,
+        name,
+        price,
+        csrfToken: req.csrfToken()
+    });
+
+    res.redirect(`/chairs/${chair.id}`);
+
 }))
 
 
@@ -18,7 +41,7 @@ router.get('/home', asyncHandler(async(req, res, next) => {
     return res.json(homeChairs)
 }))
 
-router.get('/:id', asyncHandler(async(req, res, next) => {
+router.get('/:id',  asyncHandler(async(req, res, next) => {
 
     const id = parseInt(req.params.id, 10)
     const chair = await db.Spot.findByPk(id, {
