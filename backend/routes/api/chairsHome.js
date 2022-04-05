@@ -78,4 +78,16 @@ router.put('/:id', asyncHandler(async (req, res, next) => {
 
 }))
 
+router.delete('/:id', asyncHandler(async(req, res) => {
+
+    const id = parseInt(req.params.id, 10)
+
+    const chair = await db.Spot.findByPk(id)
+
+    const deletedChair = await chair.destroy()
+
+    return res.json(deletedChair)
+
+}))
+
 module.exports = router

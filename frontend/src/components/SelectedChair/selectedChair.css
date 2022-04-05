@@ -1,28 +1,33 @@
 img {
     margin: 5px;
 }
+
+.selectedChairDiv {
+    background-color: #dbd8e3;
+    display: flex;
+    justify-content: flex-start;
+    width: min-content;
+    border-radius: 10px;
+}
+/* .selectedChairDiv > div {
+    flex-direction: column;
+} */
+
+p {
+    margin: 5px;
+    font-weight: bold;
+}
+
+/* .inner {
+    position: absolute;
+} */
 /* .selectedContainer {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-p {
-    margin: 5px;
-}
 
-.selectedChairDiv {
-    display: flex;
-    j
-    align-items: center;
-    background-color: #dbd8e3;
-    margin: 20px 620px;
-    width: 50vw;
-    padding: 10px;
-    box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
-    border-radius: 10px;
-    font-weight: 600;
-}
 
 /* .formDiv > form > button {
     background-color: #5c5470;

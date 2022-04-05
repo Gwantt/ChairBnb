@@ -113,6 +113,7 @@ const EditChair = ({ chair, hideForm }) => {
                         value={price}
                         onChange={e => setPrice(e.target.value)}
                     />
+                    
                     <button className="buttons grow" type="submit">Update Chair</button>
                     <button className="buttons grow" type="button" onClick={handleCancelClick}>Cancel</button>
                 </form>
