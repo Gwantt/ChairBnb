@@ -3,7 +3,7 @@ import { csrfFetch } from "./csrf";
 
 const LOAD = 'chairs/LOAD';
 const ADD_CHAIR = 'chairs/ADD_CHAIR';
-
+const UPDATE_ITEM = 'chairs/UPDATE_ITEM'
 
 const load = chairs => ({
     type: LOAD,
@@ -15,13 +15,17 @@ const addChair = chair => ({
     chair
 })
 
+const update = chair => ({
+    type: UPDATE_ITEM,
+    chair
+})
+
 export const getChair = id => async dispatch => {
     const res = await fetch(`/api/chairs/${id}`);
     if(res.ok) {
         const chair = await res.json();
         dispatch(load([chair]))
     }
-
 }
 
 export const createChair = chair => async dispatch => {
@@ -40,6 +44,20 @@ export const createChair = chair => async dispatch => {
         const chair = await res.json();
         console.log('chair -->', chair)
         dispatch(addChair(chair));
+        return chair;
+    }
+}
+
+export const editChair = (id, chair) => async dispatch => {
+    const res = await csrfFetch(`/api/chairs/${id}`, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(chair)
+    })
+
+    if(res.ok) {
+        const chair = await res.json();
+        dispatch(update(chair))
         return chair;
     }
 }
@@ -86,7 +104,7 @@ const chairReducer = (state = initialState, action) => {
                     ...state,
                     [action.chair.id]: action.chair
                 };
-                console.log('New State --> ', newState)
+                // console.log('New State --> ', newState)
                 // const chairList = newState.chairs.map(id => newState[id]);
                 // chairList.push(action.chair);
                 return newState;
@@ -98,6 +116,11 @@ const chairReducer = (state = initialState, action) => {
                     ...action.chair
                 }
             }
+        case UPDATE_ITEM:
+            return {
+                ...state,
+                [action.chair.id]: action.chair
+            };
         default:
             return state;
     }

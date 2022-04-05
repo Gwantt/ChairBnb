@@ -14,6 +14,7 @@ function Navigation({ isLoaded }) {
         sessionLinks = (
             <>
                 <NavLink activeClassName='active' className='aButton' to='/chairs'>Chair Listings</NavLink>
+                <NavLink activeClassName='active' className='aButton' to='/create'>Create A Listing</NavLink>
                 <ProfileButton className='aButton' user={sessionUser} />
             </>
         )
