@@ -30,7 +30,7 @@ const ChairForm = () => {
     }
 
     const handleSubmit = async e => {
-
+        e.preventDefault();
         const payload = {
             userId: sessionUser.id,
             address,
@@ -45,12 +45,14 @@ const ChairForm = () => {
         }
         let createdChair;
 
-        dispatch(chairActions.createChair(payload)).then(res => history.push(`/chairs/${res.id}`))
-        // createdChair = await dispatch(chairActions.createChair(payload));
-        // console.log('Created Chair', createdChair)
-        // if(createChair) {
-        //     <Redirect to={`/chairs/${createdChair.id}`} />
-        // }
+        // dispatch(chairActions.createChair(payload)).then(res => history.push(`/chairs/${res.id}`))
+        createdChair = await dispatch(chairActions.createChair(payload));
+        // console.log('Created Chair', createdChair.id)
+        const chair = Object.values(createdChair);
+        // console.log('Chair after creatoin', chair)
+        if(createChair) {
+           history.push(`/chairs/${chair[0]}`)
+        }
     };
 
     // const item = {
