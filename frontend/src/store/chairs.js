@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 import { csrfFetch } from "./csrf";
 
 const LOAD = 'chairs/LOAD';
@@ -24,14 +25,20 @@ export const getChair = id => async dispatch => {
 }
 
 export const createChair = chair => async dispatch => {
-    const res = await csrfFetch('/api/chairs/', {
+
+    console.log('Create Chair thunk');
+
+    const res = await csrfFetch('/api/chairs', {
         method: 'POST',
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(chair)
     })
 
+    console.log('res ->', res);
+
     if(res.ok) {
         const chair = await res.json();
+        console.log('chair -->', chair)
         dispatch(addChair(chair));
         return chair;
     }
@@ -39,7 +46,7 @@ export const createChair = chair => async dispatch => {
 
 
 export const getChairs = () => async dispatch =>{
-    const res = await fetch('/api/chairs/');
+    const res = await fetch('/api/chairs');
 
     if(res.ok) {
         const chairs = await res.json();
@@ -63,6 +70,7 @@ const initialState = {
 const chairReducer = (state = initialState, action) => {
     switch(action.type) {
         case LOAD:
+            console.log('Action.chairs ==>', action.chairs)
             const allChairs = {};
             action.chairs.forEach(chair => {
                 allChairs[chair.id] = chair
@@ -72,6 +80,7 @@ const chairReducer = (state = initialState, action) => {
                 ...state.chairs
             }
         case ADD_CHAIR:
+            console.log('action chair', action.chair)
             if(!state[action.chair.id]) {
                 const newState = {
                     ...state,

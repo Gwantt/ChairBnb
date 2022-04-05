@@ -4,7 +4,8 @@ import * as chairActions from '../../store/chairs';
 import { createChair } from '../../store/chairs';
 // import './DemoUser.css'
 import { motion } from 'framer-motion';
-import { useHistory } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
+import './chairForm.css'
 
 const ChairForm = () => {
 
@@ -22,9 +23,9 @@ const ChairForm = () => {
     const [name, setName] = useState('');
     const [price, setPrice] = useState(0);
 
-    console.log('Session User -->', sessionUser);
+    // console.log('Session User -->', sessionUser);
 
-    if(!sessionUser) {
+    if (!sessionUser) {
         history.push('/chairs');
     }
 
@@ -44,77 +45,105 @@ const ChairForm = () => {
         }
         let createdChair;
 
-        createdChair = await dispatch(chairActions.createChair(payload));
-
-        if(createChair) {
-            history.push(`/chairs/${createdChair.id}`)
-        }
+        dispatch(chairActions.createChair(payload)).then(res => history.push(`/chairs/${res.id}`))
+        // createdChair = await dispatch(chairActions.createChair(payload));
+        // console.log('Created Chair', createdChair)
+        // if(createChair) {
+        //     <Redirect to={`/chairs/${createdChair.id}`} />
+        // }
     };
 
+    // const item = {
+    //     hidden: { opacity: 0 },
+    //     show: { opacity: 1 }
+    // }
+
+    // const container = {
+    //     hidden: { opacity: 0 },
+    //     show: {
+    //         opacity: 1,
+    //         transition: {
+    //             staggerChildren: 1
+    //         }
+    //     }
+    // }
+
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type='input'
-                    placeholder='Address'
-                    required
-                    value={address}
-                    onChange={e => setAddress(e.target.value)}
-                />
-                <input
-                    type='input'
-                    placeholder='City'
-                    required
-                    value={city}
-                    onChange={e => setCity(e.target.value)}
-                />
-                <input
-                    type='input'
-                    placeholder='State (Optional)'
-                    value={state}
-                    onChange={e => setState(e.target.value)}
-                />
-                <input
-                    type='input'
-                    placeholder='Country'
-                    value={country}
-                    onChange={e => setCountry(e.target.value)}
-                />
-                <input
-                    type='input'
-                    placeholder='First Image'
-                    required
-                    value={image1}
-                    onChange={e => setImage1(e.target.value)}
-                />
-                <input
-                    type='input'
-                    placeholder='Second Image'
-                    value={image2}
-                    onChange={e => setImage2(e.target.value)}
-                />
-                <input
-                    type='input'
-                    placeholder='Third Image'
-                    value={image3}
-                    onChange={e => setImage3(e.target.value)}
-                />
-                <input
-                    type='input'
-                    placeholder='Name of Chair'
-                    value={name}
-                    onChange={e => setName(e.target.value)}
-                />
-                <input
-                    type='number'
-                    placeholder='Price'
-                    value={price}
-                    onChange={e => setPrice(e.target.value)}
-                />
-                <button type='submit'>Create New Chair</button>
-                <button type='button' onClick={() => history.push('/')}>Cancel</button>
-            </form>
-        </div>
+        <motion.div className='container' initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
+        >
+            <div className='formDiv'>
+                <form onSubmit={handleSubmit}>
+                    <input
+                        className='formItem'
+                        type='input'
+                        placeholder='Address'
+                        required
+                        value={address}
+                        onChange={e => setAddress(e.target.value)}
+                    />
+                    <input
+                        className='formItem'
+                        type='input'
+                        placeholder='City'
+                        required
+                        value={city}
+                        onChange={e => setCity(e.target.value)}
+                    />
+                    <input
+                        className='formItem'
+                        type='input'
+                        placeholder='State (Optional)'
+                        value={state}
+                        onChange={e => setState(e.target.value)}
+                    />
+                    <input
+                        className='formItem'
+                        type='input'
+                        placeholder='Country'
+                        value={country}
+                        onChange={e => setCountry(e.target.value)}
+                    />
+                    <input
+                        className='formItem'
+                        type='input'
+                        placeholder='First Image'
+                        required
+                        value={image1}
+                        onChange={e => setImage1(e.target.value)}
+                    />
+                    <input
+                        className='formItem'
+                        type='input'
+                        placeholder='Second Image'
+                        value={image2}
+                        onChange={e => setImage2(e.target.value)}
+                    />
+                    <input
+                        className='formItem'
+                        type='input'
+                        placeholder='Third Image'
+                        value={image3}
+                        onChange={e => setImage3(e.target.value)}
+                    />
+                    <input
+                        className='formItem'
+                        type='input'
+                        placeholder='Name of Chair'
+                        value={name}
+                        onChange={e => setName(e.target.value)}
+                    />
+                    <input
+                        className='formItem'
+                        type='number'
+                        placeholder='Price'
+                        value={price}
+                        onChange={e => setPrice(e.target.value)}
+                    />
+                    <button className='buttons grow'type='submit'>Create New Chair</button>
+                    <button className='buttons grow'type='button' onClick={() => history.push('/')}>Cancel</button>
+                </form>
+            </div>
+        </motion.div>
     )
 
 }
