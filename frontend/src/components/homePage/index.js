@@ -8,7 +8,7 @@ const HomePage = () => {
 
     useEffect(() => {
         dispatch(chairActions.getHomePage());
-    })
+    }, [dispatch])
 
     const chairs = useSelector(state => state.chair);
 

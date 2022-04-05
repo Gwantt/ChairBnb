@@ -22,7 +22,7 @@ const Chairs = () => {
             <div className='chairCard'>
                 {chairData.map((chair, idx) => (
                     <motion.a href={`/chairs/${chair.id}`}  className='chairDiv' key={idx} initial={{opacity: 0, translateY: 50}} animate={{opacity: 1, translateY: 0}} transition={{duration: 1.5}}>
-                        <img src={chair.image1} width='250px' height='250px' />
+                        <img src={chair?.image1} alt={chair.name} width='250px' height='250px' />
                         <p>${chair.price} / night</p>
                         <p>{chair.name}</p>
                     </motion.a>

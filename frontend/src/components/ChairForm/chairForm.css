@@ -1,36 +1,30 @@
-.chairCard {
+.container {
+    height: 100vh;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-
-
-.chairDiv {
+.formDiv {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     background-color: #dbd8e3;
     margin: 20px 620px;
     width: 50vw;
-    padding: 10px;
+    padding: 50px;
     box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
     border-radius: 10px;
     font-weight: 600;
 }
 
-/* .formDiv > form > button {
+.formDiv>form>button {
     background-color: #5c5470;
     border-radius: 5px;
     border: none;
     padding: 5px;
     font-weight: bold;
     color: #dbd8e3;
-} */
-
-img {
-    border-radius: 10px;
 }
 
 .formItem {
@@ -41,4 +35,21 @@ img {
     border: none;
     padding: 3px;
     margin: 5px;
+}
+
+.errors {
+    color: red;
+    list-style-type: none;
+}
+
+.grow {
+    transition: all .2s ease-in-out;
+}
+
+.grow:hover {
+    transform: scale(1.1);
+}
+
+button:hover {
+    cursor: pointer;
 }
