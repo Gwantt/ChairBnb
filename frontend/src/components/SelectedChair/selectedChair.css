@@ -9,16 +9,24 @@ img {
     width: min-content;
     border-radius: 10px;
 }
+/* .selectedChairDiv > div {
+    flex-direction: column;
+} */
 
+p {
+    margin: 5px;
+    font-weight: bold;
+}
+
+/* .inner {
+    position: absolute;
+} */
 /* .selectedContainer {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-p {
-    margin: 5px;
-}
 
 
 /* .formDiv > form > button {

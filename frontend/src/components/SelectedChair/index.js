@@ -22,8 +22,8 @@ const SelectedChair = () => {
 
         setShowEditForm(false);
         setShowDelete(false);
+
         if (sessionUser.id === selectedChair[0].userId) {
-            setShowEditForm(true)
             setShowDelete(true)
         }
     }, [dispatch, selectedChair[0].id])
@@ -45,15 +45,17 @@ const SelectedChair = () => {
         content = (
             <>
                 <EditChair chair={chair} hideForm={() => setShowEditForm(false)} />
+                <>
                 <button onClick={() => {
                     dispatch(deleteChair(id))
                     history.push('/chairs')
                 }}>Delete Chair Listing</button>
+                </>
             </>
         )
     }
 
-    if (!showEditForm) {
+    if (!showEditForm && sessionUser.id === selectedChair[0].userId) {
         content = (
             <button type='button' className='buttons grow' onClick={() => setShowEditForm(true)}>Edit Chair</button>
         )
@@ -70,14 +72,20 @@ const SelectedChair = () => {
         <div className='seletedContainer'>
             {selectedChair.map((chair) => (
                 <>
-                <h1>{chair.name}</h1>
+                    <h1>{chair.name}</h1>
                     <div className='selectedChairDiv' key={chair.id}>
                         <img src={chair?.image1} height='250px' width='250px'></img>
                         <img src={chair?.image3} height='250px' width='250px'></img>
                         <img src={chair?.image2} height='250px' width='250px'></img>
-                        <p>Chair Offered by {chair?.User?.username}</p>
-                        <p>${chair.price} / night</p>
-                        <p>{chair.address}, {chair.state}, {chair.country}</p>
+                        <div className='inner'>
+                            <p>Chair Offered by {chair?.User?.username}</p>
+                        </div>
+                        <div className='inner'>
+                            <p>${chair.price} / night</p>
+                        </div>
+                        <div className='inner'>
+                            <p>{chair.address}, {chair.state}, {chair.country}</p>
+                        </div>
                     </div>
                     {content}
                 </>
