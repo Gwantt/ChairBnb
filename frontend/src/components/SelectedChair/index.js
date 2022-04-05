@@ -13,8 +13,8 @@ const SelectedChair = () => {
     const chair = useSelector(state => state.chair)
     const selectedChair = Object.values(chair)
 
-    console.log('Chair ==> ', chair.id );
-
+    console.log('Chair ==> ', chair );
+    console.log('Select Chair =>', selectedChair)
     useEffect(() => {
         dispatch(chairActions.getChair(id))
 

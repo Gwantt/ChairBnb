@@ -59,7 +59,9 @@ router.put('/:id', asyncHandler(async (req, res, next) => {
 
     console.log('ID -->', id);
 
-    const chair = await db.Spot.update({
+    const chair = await db.Spot.findByPk(id);
+
+    const updatedChair = await chair.update({
         userId,
         address,
         city,
@@ -70,15 +72,9 @@ router.put('/:id', asyncHandler(async (req, res, next) => {
         image3,
         name,
         price
-    },
-    {
-        where: { id }
-    }
+    });
 
-    )
-
-    return res.json(chair)
-
+    return res.json(updatedChair)
 
 }))
 

@@ -9,15 +9,15 @@ const EditChair = ({ chair, hideForm }) => {
 
     const selectedChair = Object.values(chair)
 
-    const [address, setAddress] = useState(chair.address);
-    const [city, setCity] = useState(chair.city);
-    const [state, setState] = useState(chair.state);
-    const [country, setCountry] = useState(chair.country);
-    const [image1, setImage1] = useState(chair.image1);
-    const [image2, setImage2] = useState(chair.image2);
-    const [image3, setImage3] = useState(chair.image3);
-    const [name, setName] = useState(chair.name);
-    const [price, setPrice] = useState(chair.price);
+    const [address, setAddress] = useState(chair.address || '');
+    const [city, setCity] = useState(chair.city || '');
+    const [state, setState] = useState(chair.state || '');
+    const [country, setCountry] = useState(chair.country || '');
+    const [image1, setImage1] = useState(chair.image1 || '');
+    const [image2, setImage2] = useState(chair.image2 || '');
+    const [image3, setImage3] = useState(chair.image3 || '');
+    const [name, setName] = useState(chair.name || '');
+    const [price, setPrice] = useState(chair.price || 0);
 
 
     const handleSubmit = async e => {
