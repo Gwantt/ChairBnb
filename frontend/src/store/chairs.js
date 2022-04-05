@@ -4,6 +4,7 @@ import { csrfFetch } from "./csrf";
 const LOAD = 'chairs/LOAD';
 const ADD_CHAIR = 'chairs/ADD_CHAIR';
 const UPDATE_ITEM = 'chairs/UPDATE_ITEM'
+const REMOVE_CHAIR = 'chairs/REMOVE_CHAIR'
 
 const load = chairs => ({
     type: LOAD,
@@ -18,6 +19,11 @@ const addChair = chair => ({
 const update = chair => ({
     type: UPDATE_ITEM,
     chair
+})
+
+const remove = chairId => ({
+    type: REMOVE_CHAIR,
+    chairId
 })
 
 export const getChair = id => async dispatch => {
@@ -60,6 +66,17 @@ export const editChair = (id, chair) => async dispatch => {
         dispatch(update(chair))
         return chair;
     }
+}
+
+export const deleteChair = chairId => async dispatch =>{
+    const res = await csrfFetch(`/api/chairs/${chairId}`, {
+        method: 'DELETE'
+    })
+
+    if(res.ok) {
+        dispatch(remove(chairId))
+    }
+
 }
 
 
@@ -121,6 +138,10 @@ const chairReducer = (state = initialState, action) => {
                 ...state,
                 [action.chair.id]: action.chair
             };
+        case REMOVE_CHAIR:
+            const newState = {...state};
+            delete newState[action.chairId];
+            return newState;
         default:
             return state;
     }
