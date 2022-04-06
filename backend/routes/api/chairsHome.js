@@ -14,7 +14,7 @@ router.get('/', asyncHandler(async (req, res, next) => {
 
 router.post('/', asyncHandler(async (req, res, next) => {
     const { userId, address, city, state, country, image1, image2, image3, name, price } = req.body
-    console.log('ERICK POSTING')
+    // console.log('ERICK POSTING')
     const chair = await db.Spot.create({
         userId,
         address,
@@ -27,7 +27,7 @@ router.post('/', asyncHandler(async (req, res, next) => {
         name,
         price
     });
-    console.log('ERICK POSTED', chair)
+    // console.log('ERICK POSTED', chair)
     // console.log(res.json(chair));
     return res.json(chair)
 
@@ -46,7 +46,7 @@ router.get('/home', asyncHandler(async (req, res, next) => {
 router.get('/:id', asyncHandler(async (req, res, next) => {
     const id = parseInt(req.params.id, 10)
     const chair = await db.Spot.findByPk(id, {
-        include: db.User,
+        include: [ db.User, { model: db.Review, include: db.User } ]
     })
     return res.json(chair);
 }))

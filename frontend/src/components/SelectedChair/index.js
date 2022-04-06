@@ -87,6 +87,19 @@ const SelectedChair = () => {
                     {content}
                 </>
             ))}
+            <div className='reviewDiv'>
+                <h2>Reviews</h2>
+                {selectedChair.map(chair => (
+                    <>
+                        {chair?.Reviews?.map(review => (
+                            <>
+                                <p className='reviews'>{review.User.username} {review.rating} / 5</p>
+                                <p className='reviews' key={review.id}>{review.review} </p>
+                            </>
+                        ))}
+                    </>
+                ))}
+            </div>
         </div>
     )
 

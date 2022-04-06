@@ -28,6 +28,7 @@ const remove = chairId => ({
 
 export const getChair = id => async dispatch => {
     const res = await csrfFetch(`/api/chairs/${id}`);
+    console.log('RES ->',res);
     if(res.ok) {
         const chair = await res.json();
         dispatch(load([chair]))
@@ -105,7 +106,7 @@ const initialState = {
 const chairReducer = (state = initialState, action) => {
     switch(action.type) {
         case LOAD:
-            console.log('Action.chairs ==>', action.chairs)
+            // console.log('Action.chairs ==>', action.chairs)
             const allChairs = {};
             action.chairs.forEach(chair => {
                 allChairs[chair.id] = chair
