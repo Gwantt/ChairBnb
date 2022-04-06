@@ -6,16 +6,30 @@ img {
     background-color: #dbd8e3;
     display: flex;
     justify-content: flex-start;
-    width: min-content;
+    width: 60%;
     border-radius: 10px;
+
 }
-/* .selectedChairDiv > div {
+
+.inner {
+    display: flex;
     flex-direction: column;
-} */
+    padding: 30px;
+    justify-content: center;
+}
 
 p {
     margin: 5px;
     font-weight: bold;
+}
+
+.formDiv > form > button {
+    background-color: #5c5470;
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+    font-weight: bold;
+    color: #dbd8e3;
 }
 
 /* .inner {
@@ -29,14 +43,6 @@ p {
 
 
 
-/* .formDiv > form > button {
-    background-color: #5c5470;
-    border-radius: 5px;
-    border: none;
-    padding: 5px;
-    font-weight: bold;
-    color: #dbd8e3;
-} */
 
 /* img {
     border-radius: 10px;

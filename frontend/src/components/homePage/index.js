@@ -21,8 +21,8 @@ const HomePage = () => {
                 {chairData.map((chair, idx) => (
                     <a href={`/chairs/${chair.id}`} className='homeDiv grow' key={idx}>
                         <img src={chair.image1} width='250px' height='250px'></img>
-                        <p>{chair.name} / night</p>
-                        <p>{chair.price}</p>
+                        <p>{chair.name}</p>
+                        <p>${chair.price} / night</p>
                     </a>
                 ))}
             </div>
