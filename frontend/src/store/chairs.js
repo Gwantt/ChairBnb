@@ -27,7 +27,7 @@ const remove = chairId => ({
 })
 
 export const getChair = id => async dispatch => {
-    const res = await fetch(`/api/chairs/${id}`);
+    const res = await csrfFetch(`/api/chairs/${id}`);
     if(res.ok) {
         const chair = await res.json();
         dispatch(load([chair]))
@@ -81,7 +81,7 @@ export const deleteChair = chairId => async dispatch =>{
 
 
 export const getChairs = () => async dispatch =>{
-    const res = await fetch('/api/chairs');
+    const res = await csrfFetch('/api/chairs');
 
     if(res.ok) {
         const chairs = await res.json();

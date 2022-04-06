@@ -6,6 +6,7 @@ import EditChair from '../ChairEdit';
 import './selectedChair.css'
 import { deleteChair } from '../../store/chairs';
 const SelectedChair = () => {
+
     const dispatch = useDispatch();
     const history = useHistory();
     const { id } = useParams();
@@ -17,6 +18,7 @@ const SelectedChair = () => {
 
     console.log('Chair ==> ', chair);
     console.log('Select Chair =>', selectedChair)
+
     useEffect(() => {
         dispatch(chairActions.getChair(id))
 
@@ -26,6 +28,7 @@ const SelectedChair = () => {
         if (sessionUser.id === selectedChair[0].userId) {
             setShowDelete(true)
         }
+
     }, [dispatch, selectedChair[0].id])
 
 
@@ -39,17 +42,15 @@ const SelectedChair = () => {
 
     let content = null;
 
-
-
     if (showEditForm && showDelete) {
         content = (
             <>
                 <EditChair chair={chair} hideForm={() => setShowEditForm(false)} />
                 <>
-                <button onClick={() => {
-                    dispatch(deleteChair(id))
-                    history.push('/chairs')
-                }}>Delete Chair Listing</button>
+                    <button onClick={() => {
+                        dispatch(deleteChair(id))
+                        history.push('/chairs')
+                    }}>Delete Chair Listing</button>
                 </>
             </>
         )
@@ -79,12 +80,8 @@ const SelectedChair = () => {
                         <img src={chair?.image2} height='250px' width='250px'></img>
                         <div className='inner'>
                             <p>Chair Offered by {chair?.User?.username}</p>
-                        </div>
-                        <div className='inner'>
                             <p>${chair.price} / night</p>
-                        </div>
-                        <div className='inner'>
-                            <p>{chair.address}, {chair.state}, {chair.country}</p>
+                            <p>{chair.address}, {chair?.state}, {chair.country}</p>
                         </div>
                     </div>
                     {content}
