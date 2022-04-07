@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as chairActions from '../../store/chairs'
 import './home.css'
-
+// import '../../Vector 1.png'
 const HomePage = () => {
     const dispatch = useDispatch();
 
@@ -17,6 +17,7 @@ const HomePage = () => {
     return (
         <>
             <h1>Welcome To ChairBnb!</h1>
+            <img src='../../logo.png' />
             <div className='homeCard'>
                 {chairData.map((chair, idx) => (
                     <a href={`/chairs/${chair.id}`} className='homeDiv grow' key={idx}>
