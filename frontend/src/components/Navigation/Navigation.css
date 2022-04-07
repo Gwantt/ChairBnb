@@ -51,3 +51,18 @@ button {
 button:hover {
     cursor: pointer;
 }
+
+.logoLi {
+    display: flex;
+    justify-content: center;
+}
+
+.logoDiv {
+    display: flex;
+    justify-content: center;
+}
+
+.logo {
+    height: 4em;
+    width: 10em;
+}

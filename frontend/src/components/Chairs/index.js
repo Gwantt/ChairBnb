@@ -18,7 +18,7 @@ const Chairs = () => {
 
     return (
         <>
-            <h1>Chair Listings</h1>
+            {/* <h1>Chair Listings</h1> */}
             <div className='chairCard'>
                 {chairData.map((chair, idx) => (
                     <motion.a href={`/chairs/${chair.id}`}  className='chairDiv' key={idx} initial={{opacity: 0, translateY: 50}} animate={{opacity: 1, translateY: 0}} transition={{duration: 1.5}}>

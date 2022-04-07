@@ -29,7 +29,7 @@ const ChairForm = () => {
     if (!sessionUser) {
         history.push('/chairs');
     }
-    
+
     const url = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
 
     useEffect(() => {
@@ -89,7 +89,7 @@ const ChairForm = () => {
     // }
 
     return (
-        <div className='container' initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
+        <motion.div className='container' initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{duration: 1.5}}>
             <div className='formDiv'>
                 <form onSubmit={handleSubmit}>
                     <ul className='errors'>
@@ -167,7 +167,7 @@ const ChairForm = () => {
                     <button className='buttons grow' type='button' onClick={() => history.push('/')}>Cancel</button>
                 </form>
             </div>
-        </div>
+        </motion.div>
     )
 
 }

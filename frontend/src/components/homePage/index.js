@@ -16,8 +16,7 @@ const HomePage = () => {
 
     return (
         <>
-            <h1>Welcome To ChairBnb!</h1>
-            <img src='../../logo.png' />
+            {/* <h1>Welcome To ChairBnb!</h1> */}
             <div className='homeCard'>
                 {chairData.map((chair, idx) => (
                     <a href={`/chairs/${chair.id}`} className='homeDiv grow' key={idx}>

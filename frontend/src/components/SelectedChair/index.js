@@ -7,6 +7,8 @@ import './selectedChair.css'
 import { deleteChair } from '../../store/chairs';
 import { deleteReview } from '../../store/reviews';
 import ChairReview from '../ChairReview';
+import { motion } from 'framer-motion';
+
 
 const SelectedChair = () => {
 
@@ -16,6 +18,7 @@ const SelectedChair = () => {
     const sessionUser = useSelector(state => state.session.user)
     const [showEditForm, setShowEditForm] = useState(false)
     const [showDelete, setShowDelete] = useState(false)
+    const [showReviewForm, setShowReviewForm] = useState(false)
     const chair = useSelector(state => state.chair)
     const reviews = useSelector(state => state.review)
     const selectedChair = Object.values(chair)
@@ -37,7 +40,6 @@ const SelectedChair = () => {
 
 
     const onClick = async (review) => {
-        console.log('On click hit')
         await dispatch(deleteReview(review))
     }
 
@@ -50,7 +52,7 @@ const SelectedChair = () => {
     console.log('User ID', selectedChair[0].userId)
 
     let content = null;
-
+    let reviewContent = null;
     if (showEditForm && showDelete) {
         content = (
             <>
@@ -67,7 +69,15 @@ const SelectedChair = () => {
 
     if (!showEditForm && sessionUser?.id === selectedChair[0]?.userId) {
         content = (
-            <button type='button' className='buttons grow' onClick={() => setShowEditForm(true)}>Edit Chair</button>
+            <>
+                <button type='button' className='buttons grow' onClick={() => setShowEditForm(true)}>Edit Chair</button>
+            </>
+        )
+    }
+
+    if(sessionUser) {
+        reviewContent = (
+            <button type='button' className='buttons grow' onClick={() => setShowReviewForm(!showReviewForm)}>Leave A Review</button>
         )
     }
 
@@ -79,44 +89,55 @@ const SelectedChair = () => {
 
 
     return (
-        <div className='seletedContainer'>
+        <motion.div
+            className='seletedContainer'
+            initial={{ opacity: 0, translateY: 50 }} animate={{ opacity: 1, translateY: 0 }}
+            transition={{ duration: 1.5 }}
+        >
             {selectedChair.map((chair) => (
                 <>
-                    <h1>{chair.name}</h1>
-                    <div className='selectedChairDiv' key={chair.id}>
-                        <img src={chair?.image1} height='250px' width='250px'></img>
-                        <img src={chair?.image3} height='250px' width='250px'></img>
-                        <img src={chair?.image2} height='250px' width='250px'></img>
-                        <div className='inner'>
-                            <p>Chair Offered by {chair?.User?.username}</p>
-                            <p>${chair.price} / night</p>
-                            <p>{chair.address}, {chair?.state}, {chair.country}</p>
+                    <h1 className='chairName'>{chair.name}</h1>
+                    <div className='containerDiv'>
+                        <div className='selectedChairDiv' key={chair.id}>
+                            <img src={chair?.image1} height='500px' width='500px'></img>
+                            <img src={chair?.image3} height='500px' width='500px'></img>
+                            <img src={chair?.image2} height='500px' width='500px'></img>
                         </div>
+                    </div>
+                    <div className='inner'>
+                        <p className='reviews'>Chair Offered by {chair?.User?.username}</p>
+                        <p className='reviews'>${chair.price} / night</p>
+                        <p className='reviews'>{chair.address}, {chair?.state}, {chair.country}</p>
                     </div>
                     {content}
                 </>
             ))}
+            <h2>Reviews</h2>
+            {reviewContent}
             <div className='reviewDiv'>
-                <h2>Reviews</h2>
-                {sessionUser && (
+                {sessionUser && showReviewForm && (
                     <ChairReview />
                 )}
                 {selectedChair.map((chair) => (
                     <>
                         {chair?.Reviews?.map((review, idx) => (
-                            <>
-                                { console.log('Delete', chair.Reviews[idx])}
-                                <p className='reviews'>{review?.User.username} {review?.rating} / 5</p>
-                                <p className='reviews' key={review?.id}>{review?.review} </p>
+                            <div key={idx} className='reviewInd'>
+                                <motion.p initial={{ opacity: 0, translateY: 50 }} animate={{ opacity: 1, translateY: 0 }}
+                                    transition={{ duration: 1.5 }} className='reviews'>{review?.User.username} {review?.rating} / 5</motion.p>
+                                <motion.p initial={{ opacity: 0, translateY: 50 }} animate={{ opacity: 1, translateY: 0 }}
+                                    transition={{ duration: 1.5 }} className='reviews' key={review?.id}>{review?.review} </motion.p>
                                 {sessionUser?.id === chair.Reviews[idx].userId && (
-                                    <button onClick={() => onClick(review.id)}>Delete Review</button>
+                                    <motion.button onClick={() => onClick(review.id)}
+                                        initial={{ opacity: 0, translateY: 50 }} animate={{ opacity: 1, translateY: 0 }}
+                                        transition={{ duration: 1.5 }}
+                                    >Delete Review</motion.button>
                                 )}
-                            </>
+                            </div>
                         ))}
                     </>
                 ))}
             </div>
-        </div>
+        </motion.div>
     )
 
 }
