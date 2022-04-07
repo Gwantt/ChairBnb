@@ -101,14 +101,14 @@ const SelectedChair = () => {
                 {sessionUser && (
                     <ChairReview />
                 )}
-                {selectedChair.map(chair => (
+                {selectedChair.map((chair) => (
                     <>
-                        {chair?.Reviews?.map(review => (
+                        {chair?.Reviews?.map((review, idx) => (
                             <>
-                                {console.log(chair)}
+                                { console.log('Delete', chair.Reviews[idx])}
                                 <p className='reviews'>{review?.User.username} {review?.rating} / 5</p>
                                 <p className='reviews' key={review?.id}>{review?.review} </p>
-                                {sessionUser?.id === chair.userId && (
+                                {sessionUser?.id === chair.Reviews[idx].userId && (
                                     <button onClick={() => onClick(review.id)}>Delete Review</button>
                                 )}
                             </>
