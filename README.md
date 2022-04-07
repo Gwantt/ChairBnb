@@ -5,6 +5,8 @@ rent their own chairs to other people.
 ## Live Site Link
 [ChairBnb](https://airbnb-clone-gw.herokuapp.com/)
 
+## Techonologies Used
+
 ## Getting Started
 1. Clone the Repo
 
