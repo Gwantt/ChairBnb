@@ -12,11 +12,11 @@ import ChairForm from './components/ChairForm';
 import EditChair from './components/ChairEdit';
 
 function App() {
-  const dispath = useDispatch();
+  const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false)
   useEffect(() => {
-    dispath(sessionActions.restoreUser()).then(() => setIsLoaded(true));
-  })
+    dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+  }, [dispatch])
 
   return (
     <>

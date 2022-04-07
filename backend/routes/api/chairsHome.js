@@ -43,6 +43,7 @@ router.get('/home', asyncHandler(async (req, res, next) => {
     return res.json(homeChairs)
 }))
 
+
 router.get('/:id', asyncHandler(async (req, res, next) => {
     const id = parseInt(req.params.id, 10)
     const chair = await db.Spot.findByPk(id, {
@@ -76,6 +77,21 @@ router.put('/:id', asyncHandler(async (req, res, next) => {
 
     return res.json(updatedChair)
 
+}))
+
+router.post('/:id/reviews', asyncHandler(async(req, res, next) => {
+    const {userId, spotId, review, rating} = req.body;
+
+    // const id = parseInt(req.params.id, 10);
+
+    const newReview = await db.Review.create({
+        userId,
+        spotId,
+        review,
+        rating
+    })
+
+    res.json(newReview)
 }))
 
 router.delete('/:id', asyncHandler(async(req, res) => {

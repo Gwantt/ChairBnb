@@ -5,6 +5,9 @@ import * as chairActions from '../../store/chairs'
 import EditChair from '../ChairEdit';
 import './selectedChair.css'
 import { deleteChair } from '../../store/chairs';
+import { deleteReview } from '../../store/reviews';
+import ChairReview from '../ChairReview';
+
 const SelectedChair = () => {
 
     const dispatch = useDispatch();
@@ -14,6 +17,7 @@ const SelectedChair = () => {
     const [showEditForm, setShowEditForm] = useState(false)
     const [showDelete, setShowDelete] = useState(false)
     const chair = useSelector(state => state.chair)
+    const reviews = useSelector(state => state.review)
     const selectedChair = Object.values(chair)
 
     console.log('Chair ==> ', chair);
@@ -25,14 +29,19 @@ const SelectedChair = () => {
         setShowEditForm(false);
         setShowDelete(false);
 
-        if (sessionUser.id === selectedChair[0].userId) {
+        if (sessionUser?.id === selectedChair[0]?.userId) {
             setShowDelete(true)
         }
 
-    }, [dispatch, selectedChair[0].id])
+    }, [dispatch, selectedChair[0].id, reviews])
 
 
-    console.log('Session User ID -->', sessionUser.id)
+    const onClick = async (review) => {
+        console.log('On click hit')
+        await dispatch(deleteReview(review))
+    }
+
+    // console.log('Session User ID -->', sessionUser.id)
 
 
     // console.log('Chair -->', chair)
@@ -56,7 +65,7 @@ const SelectedChair = () => {
         )
     }
 
-    if (!showEditForm && sessionUser.id === selectedChair[0].userId) {
+    if (!showEditForm && sessionUser?.id === selectedChair[0]?.userId) {
         content = (
             <button type='button' className='buttons grow' onClick={() => setShowEditForm(true)}>Edit Chair</button>
         )
@@ -89,12 +98,19 @@ const SelectedChair = () => {
             ))}
             <div className='reviewDiv'>
                 <h2>Reviews</h2>
+                {sessionUser && (
+                    <ChairReview />
+                )}
                 {selectedChair.map(chair => (
                     <>
                         {chair?.Reviews?.map(review => (
                             <>
-                                <p className='reviews'>{review.User.username} {review.rating} / 5</p>
-                                <p className='reviews' key={review.id}>{review.review} </p>
+                                {console.log(chair)}
+                                <p className='reviews'>{review?.User.username} {review?.rating} / 5</p>
+                                <p className='reviews' key={review?.id}>{review?.review} </p>
+                                {sessionUser?.id === chair.userId && (
+                                    <button onClick={() => onClick(review.id)}>Delete Review</button>
+                                )}
                             </>
                         ))}
                     </>
