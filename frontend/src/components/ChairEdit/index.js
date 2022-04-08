@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { editChair, getChair } from "../../store/chairs";
+import './editchair.css'
 
 const EditChair = ({ chair, hideForm }) => {
     const history = useHistory();

@@ -39,8 +39,7 @@ const ChairReview = () => {
         }
 
 
-        let createdReview;
-        createdReview = await dispatch(addReview(chair[id].id, payload))
+        await dispatch(addReview(chair[id].id, payload))
     }
 
     return (
@@ -61,7 +60,7 @@ const ChairReview = () => {
                 placeholder='Rating'
                 value={rating}
                 onChange={e => setRating(e.target.value)}
-                
+
             />
             <button className='buttons grow' type='submit'>Confirm</button>
         </form>
