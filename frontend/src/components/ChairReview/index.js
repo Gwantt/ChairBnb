@@ -4,8 +4,10 @@ import { motion } from 'framer-motion';
 import { addReview } from '../../store/reviews';
 import { useHistory, useParams } from 'react-router-dom';
 import { deleteReview } from '../../store/reviews';
+import './ChairReview.css'
 
-const ChairReview = () => {
+
+const ChairReview = ({ hideForm }) => {
     const dispatch = useDispatch();
     const [errors, setErrors] = useState([]);
     const [review, setReview] = useState('');
@@ -26,10 +28,10 @@ const ChairReview = () => {
         setErrors(errors);
     }, [review, rating])
 
-    const handleSubmit = async  e => {
+    const handleSubmit = async e => {
         e.preventDefault();
 
-        if(errors.length > 0) return;
+        if (errors.length > 0) return;
 
         const payload = {
             userId: sessionUser.id,
@@ -42,28 +44,40 @@ const ChairReview = () => {
         await dispatch(addReview(chair[id].id, payload))
     }
 
-    return (
-        <form onSubmit={handleSubmit}>
-            <ul>
-                {errors.map((error, idx) => (
-                    <li key={idx}>{error}</li>
-                ))}
-            </ul>
-            <input
-                type='text'
-                placeholder='Review'
-                value={review}
-                onChange={e => setReview(e.target.value)}
-            />
-            <input
-                type='number'
-                placeholder='Rating'
-                value={rating}
-                onChange={e => setRating(e.target.value)}
+    const handleCancelClick = e => {
+        e.preventDefault();
+        hideForm();
+    }
 
-            />
-            <button className='buttons grow' type='submit'>Confirm</button>
-        </form>
+    return (
+        <div className='reviewContainer'>
+            <div className='reviewFormDiv'>
+                <form onSubmit={handleSubmit}>
+                    <ul>
+                        {errors.map((error, idx) => (
+                            <li className='errors' key={idx}>{error}</li>
+                        ))}
+                    </ul>
+                    <input
+                        className='formItem'
+                        type='text'
+                        placeholder='Review'
+                        value={review}
+                        onChange={e => setReview(e.target.value)}
+                    />
+                    <input
+                        className='formItem'
+                        type='number'
+                        placeholder='Rating'
+                        value={rating}
+                        onChange={e => setRating(e.target.value)}
+
+                    />
+                    <button className='buttons grow' type='submit'>Confirm</button>
+                    <button className='buttons grow' type='button' onClick={handleCancelClick}>Cancel</button>
+                </form>
+            </div>
+        </div>
     )
 }
 

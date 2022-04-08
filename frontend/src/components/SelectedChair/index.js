@@ -116,7 +116,7 @@ const SelectedChair = () => {
             {reviewContent}
             <div className='reviewDiv'>
                 {sessionUser && showReviewForm && (
-                    <ChairReview />
+                    <ChairReview hideForm={() => setShowReviewForm(false)} />
                 )}
                 {selectedChair.map((chair) => (
                     <>

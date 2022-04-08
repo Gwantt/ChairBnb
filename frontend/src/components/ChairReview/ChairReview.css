@@ -1,24 +1,23 @@
-.editContainer {
+.reviewContainer {
     position: absolute;
     top: 50%;
     right: 50%;
-    transform: translate(50%, -50%);
+    transform: translate(50%, 30%);
 }
 
-.EditFormDiv {
+.reviewFormDiv {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #dbd8e3;
-    margin: 20px 620px;
-    width: 20vw;
+    width: 25vw;
     padding: 50px;
     box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
     border-radius: 10px;
-    font-weight: 600;
+    font-weight: bold;
 }
 
-.EditFormDiv>form>button {
+.reviewFormDiv > form > button {
     background-color: #5c5470;
     border-radius: 5px;
     border: none;
@@ -37,12 +36,3 @@
     margin: 5px;
 }
 
-.errors {
-    color: red;
-    list-style-type: none;
-}
-
-input {
-    border-radius: 5px;
-    font-weight: bold;
-}
