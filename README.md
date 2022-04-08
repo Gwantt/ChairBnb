@@ -6,7 +6,7 @@ rent their own chairs to other people.
 [ChairBnb](https://airbnb-clone-gw.herokuapp.com/)
 
 ## Techonologies Used
-
+<img src="https://img.icons8.com/color/48/000000/javascript--v1.png"/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sequelize/sequelize-original.svg" height=40 /> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original-wordmark.svg" height=40/> <img src="https://img.icons8.com/color/48/000000/visual-studio-code-2019.png" height=35/> <img src="https://img.icons8.com/color/48/000000/css3.png"/> <img src="https://img.icons8.com/color/48/000000/nodejs.png"/> <img src="https://img.icons8.com/nolan/64/git.png" height=50/> <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/2300px-React-icon.svg.png' height=40 />
 ## Getting Started
 1. Clone the Repo
 
