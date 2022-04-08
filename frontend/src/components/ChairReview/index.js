@@ -42,6 +42,7 @@ const ChairReview = ({ hideForm }) => {
 
 
         await dispatch(addReview(chair[id].id, payload))
+        hideForm();
     }
 
     const handleCancelClick = e => {
