@@ -75,7 +75,7 @@ const SelectedChair = () => {
         )
     }
 
-    if(sessionUser) {
+    if (sessionUser) {
         reviewContent = (
             <button type='button' className='buttons grow' onClick={() => setShowReviewForm(!showReviewForm)}>Leave A Review</button>
         )
@@ -127,10 +127,12 @@ const SelectedChair = () => {
                                 <p initial={{ opacity: 0, translateY: 50 }} animate={{ opacity: 1, translateY: 0 }}
                                     transition={{ duration: 1.5 }} className='reviews' key={review?.id}>{review?.review} </p>
                                 {sessionUser?.id === chair.Reviews[idx].userId && (
-                                    <motion.button className='delete' onClick={() => onClick(review.id)}
-                                        initial={{ opacity: 0, translateY: 50 }} animate={{ opacity: 1, translateY: 0 }}
-                                        transition={{ duration: 1.5 }}
-                                    >Delete Review</motion.button>
+                                    <div className='deleteButton'>
+                                        <motion.button className='delete' onClick={() => onClick(review.id)}
+                                            initial={{ opacity: 0, translateY: 50 }} animate={{ opacity: 1, translateY: 0 }}
+                                            transition={{ duration: 1.5 }}
+                                        >Delete Review</motion.button>
+                                    </div>
                                 )}
                             </div>
                         ))}

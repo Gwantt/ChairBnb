@@ -17,6 +17,11 @@
     font-weight: bold;
 }
 
+.deleteButton {
+    display: flex;
+    justify-content: flex-end;
+}
+
 .reviewFormDiv > form > button {
     background-color: #5c5470;
     border-radius: 5px;
@@ -35,4 +40,3 @@
     padding: 3px;
     margin: 5px;
 }
-
