@@ -122,10 +122,11 @@ const SelectedChair = () => {
                     <>
                         {chair?.Reviews?.map((review, idx) => (
                             <div key={idx} className='reviewInd'>
-                                <p initial={{ opacity: 0, translateY: 50 }} animate={{ opacity: 1, translateY: 0 }}
-                                    transition={{ duration: 1.5 }} className='reviews'>{review?.User.username} {review?.rating} / 5</p>
-                                <p initial={{ opacity: 0, translateY: 50 }} animate={{ opacity: 1, translateY: 0 }}
-                                    transition={{ duration: 1.5 }} className='reviews' key={review?.id}>{review?.review} </p>
+                                <div className='innerDiv'>
+                                    <p className='reviews'>{review?.User.username} </p>
+                                    <p className='reviews' > {review?.rating} / 5 </p>
+                                    <p className='reviews' key={review?.id}>{review?.review} </p>
+                                </div>
                                 {sessionUser?.id === chair.Reviews[idx].userId && (
                                     <div className='deleteButton'>
                                         <motion.button className='delete' onClick={() => onClick(review.id)}
