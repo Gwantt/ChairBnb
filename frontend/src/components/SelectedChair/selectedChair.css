@@ -11,8 +11,12 @@ img {
 
 .innerDiv > p {
     color: #5c5470;
+    white-space: nowrap;
 }
 
+.reviewH2 {
+    margin-left: 1em;
+}
 
 .reviewInd {
     width: 50%;

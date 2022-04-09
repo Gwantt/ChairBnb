@@ -112,7 +112,7 @@ const SelectedChair = () => {
                     {content}
                 </>
             ))}
-            <h2>Reviews</h2>
+            <h2 className='reviewH2'>Reviews</h2>
             {reviewContent}
             <div className='reviewDiv'>
                 {sessionUser && showReviewForm && (
