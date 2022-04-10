@@ -9,6 +9,10 @@
     top: 5px;
 } */
 
+nav {
+    list-style-type: none;
+}
+
 .profile {
     color: #dbd8e3;
     margin: 15px;

@@ -1,14 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import './Navigation.css'
 import ProfileButton from './ProfileButton';
 import logo from '../../images/logo.png'
 import DemoUser from '../DemoUser';
+import { motion } from 'framer-motion';
 // import './Navgation.css'
+
 
 function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
+    const [open, setOpen] = useState(false)
+    const variants = {
+        open: { opacity: 1, x: 0 },
+        closed: { opacity: 0, x: "-100%" },
+    }
+
 
     let sessionLinks;
     if (sessionUser) {
@@ -32,7 +40,10 @@ function Navigation({ isLoaded }) {
     }
 
     return (
-        <ul>
+        <motion.nav
+            // animate={open ? 'open' : 'closed'}
+            // variants={variants}
+        >
             <li>
                 <NavLink activeClassName='active' className='aButton' exact to='/'>Home</NavLink>
                 {isLoaded && sessionLinks}
@@ -43,7 +54,7 @@ function Navigation({ isLoaded }) {
                     <img className='logo' src={logo} alt='ChairBnb' />
                 </div>
             </li>
-        </ul>
+        </motion.nav>
     )
 }
 
