@@ -23,8 +23,8 @@ const SelectedChair = () => {
     const reviews = useSelector(state => state.review)
     const selectedChair = Object.values(chair)
 
-    console.log('Chair ==> ', chair);
-    console.log('Select Chair =>', selectedChair)
+    // console.log('Chair ==> ', chair);
+    // console.log('Select Chair =>', selectedChair)
 
     useEffect(() => {
         dispatch(chairActions.getChair(id))
@@ -49,7 +49,7 @@ const SelectedChair = () => {
     // console.log('Chair -->', chair)
 
 
-    console.log('User ID', selectedChair[0].userId)
+    // console.log('User ID', selectedChair[0].userId)
 
     let content = null;
     let reviewContent = null;

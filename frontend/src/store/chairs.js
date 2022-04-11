@@ -28,7 +28,7 @@ const remove = chairId => ({
 
 export const getChair = id => async dispatch => {
     const res = await csrfFetch(`/api/chairs/${id}`);
-    console.log('RES ->',res);
+    // console.log('RES ->',res);
     if(res.ok) {
         const chair = await res.json();
         dispatch(load([chair]))
@@ -37,7 +37,7 @@ export const getChair = id => async dispatch => {
 
 export const createChair = chair => async dispatch => {
 
-    console.log('Create Chair thunk');
+    // console.log('Create Chair thunk');
 
     const res = await csrfFetch('/api/chairs', {
         method: 'POST',
@@ -45,11 +45,11 @@ export const createChair = chair => async dispatch => {
         body: JSON.stringify(chair)
     })
 
-    console.log('res ->', res);
+    // console.log('res ->', res);
 
     if(res.ok) {
         const chair = await res.json();
-        console.log('chair -->', chair)
+        // console.log('chair -->', chair)
         dispatch(addChair(chair));
         return chair;
     }
@@ -116,7 +116,7 @@ const chairReducer = (state = initialState, action) => {
                 ...state.chairs
             }
         case ADD_CHAIR:
-            console.log('action chair', action.chair)
+            // console.log('action chair', action.chair)
             if(!state[action.chair.id]) {
                 const newState = {
                     ...state,

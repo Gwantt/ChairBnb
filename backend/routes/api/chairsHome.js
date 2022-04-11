@@ -58,7 +58,7 @@ router.put('/:id', asyncHandler(async (req, res, next) => {
 
     const id = parseInt(req.params.id, 10);
 
-    console.log('ID -->', id);
+    // console.log('ID -->', id);
 
     const chair = await db.Spot.findByPk(id);
 

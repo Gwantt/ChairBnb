@@ -26,7 +26,7 @@ const EditChair = ({ chair, hideForm }) => {
 
     const url = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
 
-    console.log('Chair Edit Form Chair', chair2)
+    // console.log('Chair Edit Form Chair', chair2)
 
     useEffect(() => {
         const errors = [];

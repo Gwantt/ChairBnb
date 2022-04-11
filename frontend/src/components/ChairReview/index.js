@@ -17,7 +17,7 @@ const ChairReview = ({ hideForm }) => {
     const chair = useSelector(state => state.chair);
 
 
-    console.log('Chair Review Form Chair => ', chair[id]);
+    // console.log('Chair Review Form Chair => ', chair[id]);
 
     useEffect(() => {
         const errors = []

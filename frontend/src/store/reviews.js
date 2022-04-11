@@ -15,17 +15,17 @@ const reviewDelete = comment => ({
 })
 
 export const deleteReview = reviewId => async dispatch => {
-    console.log('Delete Review THunk')
+    // console.log('Delete Review THunk')
 
     const res = await csrfFetch(`/api/reviews/${reviewId}`, {
         method: 'DELETE'
     });
 
-    console.log('Delete Response', res)
+    // console.log('Delete Response', res)
 
     if(res.ok) {
         const id = await res.json()
-        console.log('Id from delete ', id)
+        // console.log('Id from delete ', id)
         dispatch(reviewDelete(id))
         return id
     }
