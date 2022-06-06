@@ -5,17 +5,20 @@ img {
 .innerDiv {
     display: flex;
     justify-content: flex-start;
-    padding-right: 50%;
 
 }
 
 .innerDiv > p {
     color: #5c5470;
-    white-space: nowrap;
+    /* white-space: nowrap; */
 }
 
 .reviewH2 {
     margin-left: 1em;
+}
+
+.nowrap {
+    white-space: nowrap;
 }
 
 .reviewInd {
@@ -29,7 +32,7 @@ img {
     padding: 5px;
     margin: 5px;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     border-radius: 5px;
 }
 

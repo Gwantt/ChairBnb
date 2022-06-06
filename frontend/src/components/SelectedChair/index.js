@@ -123,8 +123,8 @@ const SelectedChair = () => {
                         {chair?.Reviews?.map((review, idx) => (
                             <div key={idx} className='reviewInd'>
                                 <div className='innerDiv'>
-                                    <p className='reviews'>{review?.User.username} </p>
-                                    <p className='reviews' > {review?.rating} / 5 </p>
+                                    <p className='reviews nowrap'>{review?.User.username} </p>
+                                    <p className='reviews nowrap' > {review?.rating} / 5 </p>
                                     <p className='reviews' key={review?.id}>{review?.review} </p>
                                 </div>
                                 {sessionUser?.id === chair.Reviews[idx].userId && (
