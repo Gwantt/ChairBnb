@@ -18,9 +18,7 @@ const ChairForm = () => {
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
     const [country, setCountry] = useState('');
-    const [image1, setImage1] = useState('');
-    const [image2, setImage2] = useState('');
-    const [image3, setImage3] = useState('');
+    const [images, setImages] = useState([])
     const [name, setName] = useState('');
     const [price, setPrice] = useState(0);
 
@@ -30,34 +28,28 @@ const ChairForm = () => {
         history.push('/chairs');
     }
 
-    const url = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
-
     useEffect(() => {
         const errors = [];
 
         if (address.length < 5) errors.push('Please Enter your full Address ');
         if (city.length < 5) errors.push('Please Enter your City ');
         if (country.length < 3) errors.push('Please Enter a Valid Country ');
-        if (!(image1.match(url))) errors.push('Please Enter a URL for the first image ');
-        if (!(image2.match(url))) errors.push('Please Enter a URL for the second image ');
-        if (!(image3.match(url))) errors.push('Please Enter a URL for the third image ');
         if (name.length < 3) errors.push('Name must be 3 characters or longer ');
         if (price <= 0) errors.push('Please enter a price');
 
         setErrors(errors);
-    }, [address, city, country, image1, image2, image3, name, price])
+    }, [address, city, country, name, price])
 
     const handleSubmit = async e => {
         e.preventDefault();
+        console.log('submtting the form', images)
         const payload = {
             userId: sessionUser.id,
             address,
             city,
             state,
             country,
-            image1,
-            image2,
-            image3,
+            images,
             name,
             price
         }
@@ -73,20 +65,10 @@ const ChairForm = () => {
         }
     };
 
-    // const item = {
-    //     hidden: { opacity: 0 },
-    //     show: { opacity: 1 }
-    // }
-
-    // const container = {
-    //     hidden: { opacity: 0 },
-    //     show: {
-    //         opacity: 1,
-    //         transition: {
-    //             staggerChildren: 1
-    //         }
-    //     }
-    // }
+    const updateFiles = e => {
+        const files = e.target.files
+        setImages(files)
+    }
 
     return (
         <motion.div className='container' initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{duration: 1.5}}>
@@ -129,25 +111,10 @@ const ChairForm = () => {
                     />
                     <input
                         className='formItem'
-                        type='input'
-                        placeholder='First Image'
+                        type='file'
+                        multiple
                         required
-                        value={image1}
-                        onChange={e => setImage1(e.target.value)}
-                    />
-                    <input
-                        className='formItem'
-                        type='input'
-                        placeholder='Second Image'
-                        value={image2}
-                        onChange={e => setImage2(e.target.value)}
-                    />
-                    <input
-                        className='formItem'
-                        type='input'
-                        placeholder='Third Image'
-                        value={image3}
-                        onChange={e => setImage3(e.target.value)}
+                        onChange={updateFiles}
                     />
                     <input
                         className='formItem'
@@ -163,7 +130,7 @@ const ChairForm = () => {
                         value={price}
                         onChange={e => setPrice(e.target.value)}
                     />
-                    <button className='buttons grow' type='submit' disabled={errors.length > 0}>Create New Chair</button>
+                    <button className='buttons grow' type='submit'>Create New Chair</button>
                     <button className='buttons grow' type='button' onClick={() => history.push('/')}>Cancel</button>
                 </form>
             </div>

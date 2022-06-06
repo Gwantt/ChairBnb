@@ -36,16 +36,26 @@ export const getChair = id => async dispatch => {
 }
 
 export const createChair = chair => async dispatch => {
-
+    const {images, price, name, city, state, country} = chair
     // console.log('Create Chair thunk');
-    
+    const formData = new FormData()
+    formData.append('price', price)
+    formData.append('name', name)
+    formData.append('city', city)
+    formData.append('state', state)
+    formData.append('country', country)
+
+    if(images && images.length !== 0) {
+        for(let i = 0; i < images.length; i++) {
+            formData.append('images', images[i])
+        }
+    }
+
     const res = await csrfFetch('/api/chairs', {
         method: 'POST',
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(chair)
+        headers: {"Content-Type": "multipart/form-data"},
+        body: formData
     })
-
-    // console.log('res ->', res);
 
     if(res.ok) {
         const chair = await res.json();

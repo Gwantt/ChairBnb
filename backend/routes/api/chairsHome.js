@@ -13,15 +13,15 @@ const {
 //? Chair /api/chairs/
 router.get('/', asyncHandler(async (req, res, next) => {
     const chairs = await db.Spot.findAll()
-    // console.log(typeof chairs[0])
     return res.json(chairs)
 }))
 
 
 router.post('/', multipleMulterUpload("images"), asyncHandler(async (req, res, next)  => {
     const { userId, address, city, state, country, name, price } = req.body
+    
     const images = await multiplePublicFileUpload(req.files)
-    console.log(images)
+
     const chair = await db.Spot.create({
         userId,
         address,
@@ -31,10 +31,7 @@ router.post('/', multipleMulterUpload("images"), asyncHandler(async (req, res, n
         name,
         price
     });
-    // console.log('ERICK POSTED', chair)
-    // console.log(res.json(chair));
     return res.json(chair)
-
 }))
 
 
@@ -85,8 +82,6 @@ router.put('/:id', asyncHandler(async (req, res, next) => {
 
 router.post('/:id/reviews', asyncHandler(async(req, res, next) => {
     const {userId, spotId, review, rating} = req.body;
-
-    // const id = parseInt(req.params.id, 10);
 
     const newReview = await db.Review.create({
         userId,

@@ -18,13 +18,9 @@ const EditChair = ({ chair, hideForm }) => {
     const [city, setCity] = useState(chair2[id].city || '');
     const [state, setState] = useState(chair2[id].state || '');
     const [country, setCountry] = useState(chair2[id].country || '');
-    const [image1, setImage1] = useState(chair2[id].image1 || '');
-    const [image2, setImage2] = useState(chair2[id].image2 || '');
-    const [image3, setImage3] = useState(chair2[id].image3 || '');
     const [name, setName] = useState(chair2[id].name || '');
     const [price, setPrice] = useState(chair2[id].price || 0);
-
-    const url = s?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
+    const [images, setImages] = useState(chair2[id].images || [])
 
     // console.log('Chair Edit Form Chair', chair2)
 
@@ -34,14 +30,11 @@ const EditChair = ({ chair, hideForm }) => {
         if (address.length < 5) errors.push('Please Enter your full Address');
         if (city.length < 5) errors.push('Please Enter your City');
         if (country.length < 3) errors.push('Please Enter a Valid Country');
-        if (!(image1.match(url))) errors.push('Please Enter a URL for the first image');
-        if (!(image2.match(url))) errors.push('Please enter a URL for the second image');
-        if (!(image3.match(url))) errors.push('Please enter a URL for the third image');
         if (name.length < 3) errors.push('Name must be 3 characters or longer');
         if (price <= 0) errors.push('Please enter a price');
 
         setErrors(errors);
-    }, [address, city, country, image1, image2, image3, name, price])
+    }, [address, city, country, name, price])
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -52,9 +45,7 @@ const EditChair = ({ chair, hideForm }) => {
             city,
             state,
             country,
-            image1,
-            image2,
-            image3,
+            images,
             name,
             price
         }
@@ -72,6 +63,11 @@ const EditChair = ({ chair, hideForm }) => {
     const handleCancelClick = e => {
         e.preventDefault();
         hideForm();
+    }
+
+    const updateFiles = e => {
+        const files = e.target.files
+        setImages(files)
     }
 
     return (
@@ -118,29 +114,11 @@ const EditChair = ({ chair, hideForm }) => {
                         onChange={e => setCountry(e.target.value)}
                     />
                     <input
-                        className="formItem"
-
-                        type='input'
-                        placeholder="First Image"
+                        className='formItem'
+                        type='file'
+                        multiple
                         required
-                        value={image1}
-                        onChange={e => setImage1(e.target.value)}
-                    />
-                    <input
-                        className="formItem"
-
-                        type='input'
-                        placeholder="Second Image"
-                        value={image2}
-                        onChange={e => setImage2(e.target.value)}
-                    />
-                    <input
-                        className="formItem"
-
-                        type='input'
-                        placeholder="Third Image"
-                        value={image3}
-                        onChange={e => setImage3(e.target.value)}
+                        onChange={updateFiles}
                     />
                     <input
                         className="formItem"
