@@ -38,7 +38,7 @@ export const getChair = id => async dispatch => {
 export const createChair = chair => async dispatch => {
 
     // console.log('Create Chair thunk');
-
+    
     const res = await csrfFetch('/api/chairs', {
         method: 'POST',
         headers: {"Content-Type": "application/json"},

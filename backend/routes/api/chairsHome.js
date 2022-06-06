@@ -1,6 +1,12 @@
 const router = require('express').Router();
 const asyncHandler = require('express-async-handler');
 const db = require('../../db/models');
+const {
+    singleMulterUpload,
+    singlePublicFileUpload,
+    multipleMulterUpload,
+    multiplePublicFileUpload,
+  } = require("../../awsS3");
 // const csrf = require('csurf');
 // const csrfProtection = csrf({ cookie: true });
 
@@ -12,18 +18,16 @@ router.get('/', asyncHandler(async (req, res, next) => {
 }))
 
 
-router.post('/', asyncHandler(async (req, res, next) => {
-    const { userId, address, city, state, country, image1, image2, image3, name, price } = req.body
-    // console.log('ERICK POSTING')
+router.post('/', multipleMulterUpload("images"), asyncHandler(async (req, res, next)  => {
+    const { userId, address, city, state, country, name, price } = req.body
+    const images = await multiplePublicFileUpload(req.files)
+    console.log(images)
     const chair = await db.Spot.create({
         userId,
         address,
         city,
         state,
         country,
-        image1,
-        image2,
-        image3,
         name,
         price
     });

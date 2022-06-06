@@ -24,7 +24,7 @@ const EditChair = ({ chair, hideForm }) => {
     const [name, setName] = useState(chair2[id].name || '');
     const [price, setPrice] = useState(chair2[id].price || 0);
 
-    const url = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
+    const url = s?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
 
     // console.log('Chair Edit Form Chair', chair2)
 
