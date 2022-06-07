@@ -36,14 +36,16 @@ export const getChair = id => async dispatch => {
 }
 
 export const createChair = chair => async dispatch => {
-    const {images, price, name, city, state, country} = chair
+    const {userId, images, price, name, city, state, country, address} = chair
     // console.log('Create Chair thunk');
     const formData = new FormData()
+    formData.append('userId', userId)
     formData.append('price', price)
     formData.append('name', name)
     formData.append('city', city)
     formData.append('state', state)
     formData.append('country', country)
+    formData.append('address', address)
 
     if(images && images.length !== 0) {
         for(let i = 0; i < images.length; i++) {

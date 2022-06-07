@@ -11,12 +11,7 @@ import { motion } from 'framer-motion';
 
 function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
-    const [open, setOpen] = useState(false)
-    const variants = {
-        open: { opacity: 1, x: 0 },
-        closed: { opacity: 0, x: "-100%" },
-    }
-
+    const [searchContent, setSearchContent] = useState('')
 
     let sessionLinks;
     if (sessionUser) {
@@ -39,6 +34,16 @@ function Navigation({ isLoaded }) {
         )
     }
 
+    const handleSubmit = e => {
+        e.preventDefault()
+
+
+        //dispatch search thunk using search params
+        //load the search results on the page instead of everything else
+
+
+    }
+
     return (
         <motion.nav
             // animate={open ? 'open' : 'closed'}
@@ -53,6 +58,15 @@ function Navigation({ isLoaded }) {
                 <div className='logoDiv'>
                     <img className='logo' src={logo} alt='ChairBnb' />
                 </div>
+            </li>
+            <li>
+                <form onSubmit={handleSubmit}>
+                    <input
+                        type='text'
+                        value={searchContent}
+                        onChange={e => setSearchContent(e.target.value)}
+                    />
+                </form>
             </li>
         </motion.nav>
     )

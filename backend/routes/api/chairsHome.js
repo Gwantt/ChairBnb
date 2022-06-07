@@ -19,14 +19,17 @@ router.get('/', asyncHandler(async (req, res, next) => {
 
 router.post('/', multipleMulterUpload("images"), asyncHandler(async (req, res, next)  => {
     const { userId, address, city, state, country, name, price } = req.body
-    
+    console.log('User ID', userId)
     const images = await multiplePublicFileUpload(req.files)
-
+    console.log('images \n', images)
     const chair = await db.Spot.create({
         userId,
         address,
         city,
         state,
+        image1: images[0],
+        image2: images[1],
+        image3: images[2],
         country,
         name,
         price
