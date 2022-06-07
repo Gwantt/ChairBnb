@@ -1,36 +1,40 @@
 const router = require('express').Router();
 const asyncHandler = require('express-async-handler');
 const db = require('../../db/models');
+const {
+    singleMulterUpload,
+    singlePublicFileUpload,
+    multipleMulterUpload,
+    multiplePublicFileUpload,
+  } = require("../../awsS3");
 // const csrf = require('csurf');
 // const csrfProtection = csrf({ cookie: true });
 
 //? Chair /api/chairs/
 router.get('/', asyncHandler(async (req, res, next) => {
     const chairs = await db.Spot.findAll()
-    // console.log(typeof chairs[0])
     return res.json(chairs)
 }))
 
 
-router.post('/', asyncHandler(async (req, res, next) => {
-    const { userId, address, city, state, country, image1, image2, image3, name, price } = req.body
-    // console.log('ERICK POSTING')
+router.post('/', multipleMulterUpload("images"), asyncHandler(async (req, res, next)  => {
+    const { userId, address, city, state, country, name, price } = req.body
+
+    const images = await multiplePublicFileUpload(req.files)
+
     const chair = await db.Spot.create({
         userId,
         address,
         city,
         state,
+        image1: images[0],
+        image2: images[1],
+        image3: images[2],
         country,
-        image1,
-        image2,
-        image3,
         name,
         price
     });
-    // console.log('ERICK POSTED', chair)
-    // console.log(res.json(chair));
     return res.json(chair)
-
 }))
 
 
@@ -53,36 +57,41 @@ router.get('/:id', asyncHandler(async (req, res, next) => {
 }))
 
 
-router.put('/:id', asyncHandler(async (req, res, next) => {
-    const { userId, address, city, state, country, image1, image2, image3, name, price } = req.body
+router.put('/:id', multipleMulterUpload("images"), asyncHandler(async (req, res, next) => {
+    const { userId, address, city, state, country, name, price } = req.body
 
     const id = parseInt(req.params.id, 10);
 
-    // console.log('ID -->', id);
+    const images = await multiplePublicFileUpload(req.files)
 
-    const chair = await db.Spot.findByPk(id);
+    const chair = await db.Spot.findByPk(id, {
+        include: [db.User, {model: db.Review, include: db.User}]
+    });
 
-    const updatedChair = await chair.update({
+    await chair.update({
         userId,
         address,
         city,
         state,
         country,
-        image1,
-        image2,
-        image3,
+        image1: images[0],
+        image2: images[1],
+        image3: images[2],
         name,
-        price
-    });
+        price,
+    },
+    );
 
-    return res.json(updatedChair)
+    const chairAfter = await db.Spot.findByPk(id, {
+        include: [ db.User, {model: db.Review, include: db.User}]
+    })
+
+    return res.json(chairAfter)
 
 }))
 
 router.post('/:id/reviews', asyncHandler(async(req, res, next) => {
     const {userId, spotId, review, rating} = req.body;
-
-    // const id = parseInt(req.params.id, 10);
 
     const newReview = await db.Review.create({
         userId,
