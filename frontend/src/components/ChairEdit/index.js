@@ -8,7 +8,7 @@ const EditChair = ({ chair, hideForm }) => {
     const history = useHistory();
     const dispatch = useDispatch();
     const chair2 = useSelector(state => state.chair)
-
+    const sessionUser = useSelector(state => state.session.user)
     const { id } = useParams()
 
     const selectedChair = Object.values(chair);
@@ -22,7 +22,6 @@ const EditChair = ({ chair, hideForm }) => {
     const [price, setPrice] = useState(chair2[id].price || 0);
     const [images, setImages] = useState(chair2[id].images || [])
 
-    // console.log('Chair Edit Form Chair', chair2)
 
     useEffect(() => {
         const errors = [];
@@ -41,6 +40,7 @@ const EditChair = ({ chair, hideForm }) => {
 
         const payload = {
             ...chair,
+            userId: sessionUser.id,
             address,
             city,
             state,
@@ -49,7 +49,7 @@ const EditChair = ({ chair, hideForm }) => {
             name,
             price
         }
-
+        console.log('payload', payload)
         let updatedChair;
 
         updatedChair = await dispatch(editChair(selectedChair[0].id, payload));
@@ -114,13 +114,6 @@ const EditChair = ({ chair, hideForm }) => {
                         onChange={e => setCountry(e.target.value)}
                     />
                     <input
-                        className='formItem'
-                        type='file'
-                        multiple
-                        required
-                        onChange={updateFiles}
-                    />
-                    <input
                         className="formItem"
 
                         type='input'
@@ -135,6 +128,13 @@ const EditChair = ({ chair, hideForm }) => {
                         placeholder="Price"
                         value={price}
                         onChange={e => setPrice(e.target.value)}
+                    />
+                    <label style={{fontSize:'15px'}}>Images are Optional!</label>
+                    <input
+                        className='formItem'
+                        type='file'
+                        multiple
+                        onChange={updateFiles}
                     />
 
                     <button className="buttons grow" type="submit" disabled={errors.length > 0}>Update Chair</button>

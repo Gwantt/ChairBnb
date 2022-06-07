@@ -42,7 +42,6 @@ const ChairForm = () => {
 
     const handleSubmit = async e => {
         e.preventDefault();
-        console.log('submtting the form', images)
         const payload = {
             userId: sessionUser.id,
             address,

@@ -96,6 +96,7 @@ const SelectedChair = () => {
         >
             {selectedChair.map((chair) => (
                 <>
+                {console.log('selectedChair map', chair)}
                     <h1 className='chairName'>{chair.name}</h1>
                     <div className='containerDiv'>
                         <div className='selectedChairDiv' key={chair.id}>

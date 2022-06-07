@@ -68,10 +68,27 @@ export const createChair = chair => async dispatch => {
 }
 
 export const editChair = (id, chair) => async dispatch => {
+    const { userId, images, price, name, city, state, country, address} = chair
+    console.log('userId', chair)
+    const formData = new FormData()
+    formData.append('userId', userId)
+    formData.append('price', price)
+    formData.append('name', name)
+    formData.append('city', city)
+    formData.append('state', state)
+    formData.append('country', country)
+    formData.append('address', address)
+
+    if(images && images.length !== 0) {
+        for(let i = 0; i < images.length; i++) {
+            formData.append('images', images[i])
+        }
+    }
+
     const res = await csrfFetch(`/api/chairs/${id}`, {
         method: 'PUT',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(chair)
+        headers: {'Content-Type': 'multipart/form-data'},
+        body: formData
     })
 
     if(res.ok) {
