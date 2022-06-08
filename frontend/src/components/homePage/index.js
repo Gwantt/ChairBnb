@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as chairActions from '../../store/chairs'
 import './home.css'
 import { motion } from 'framer-motion';
-// import '../../Vector 1.png'
+
 const HomePage = () => {
     const dispatch = useDispatch();
 
@@ -28,9 +28,6 @@ const HomePage = () => {
                 ))}
             </div>
         </>
-
-
-
     )
 }
 

@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import sessionReducer from './session';
 import chairReducer from './chairs';
 import reviewReducer from './reviews';
+import searchReducer from './search';
 
 const rootReducer = combineReducers({
     session: sessionReducer,
     chair: chairReducer,
-    review: reviewReducer
+    review: reviewReducer,
+    search: searchReducer
 })
 
 let enhancer;

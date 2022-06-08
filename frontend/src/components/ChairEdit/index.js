@@ -136,7 +136,6 @@ const EditChair = ({ chair, hideForm }) => {
                         multiple
                         onChange={updateFiles}
                     />
-
                     <button className="buttons grow" type="submit" disabled={errors.length > 0}>Update Chair</button>
                     <button className="buttons grow" type="button" onClick={handleCancelClick}>Cancel</button>
                 </form>

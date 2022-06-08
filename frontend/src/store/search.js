@@ -1,4 +1,4 @@
-import {crsfFetch} from './csrf'
+import {crsfFetch, csrfFetch} from './csrf'
 
 const SEARCH = 'search/SEARCH'
 const CLEAR = 'search/CLEAR'
@@ -12,7 +12,28 @@ const clear = () => ({
     type: CLEAR,
 })
 
+export const searchThunk = searchParam => async dispatch => {
+    console.log(searchParam)
+    const res = await csrfFetch('/api/chairs/search', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(searchParam)
+    })
 
+    if(res.ok) {
+        const chairs = await res.json()
+        console.log('searched Chairs => ', chairs)
+        dispatch(clear())
+        dispatch(search(chairs))
+    }
+}
+
+export const clearSearchThunk = () => dispatch => {
+    console.log('clearing')
+    dispatch(clear())
+}
 
 const searchReducer = (state = {}, action) => {
     switch(action.type) {

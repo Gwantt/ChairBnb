@@ -53,7 +53,7 @@ export const createChair = chair => async dispatch => {
         }
     }
 
-    const res = await csrfFetch('/api/chairs', {
+    const res = await csrfFetch('/api/chairs/', {
         method: 'POST',
         headers: {"Content-Type": "multipart/form-data"},
         body: formData
@@ -151,9 +151,6 @@ const chairReducer = (state = initialState, action) => {
                     ...state,
                     [action.chair.id]: action.chair
                 };
-                // console.log('New State --> ', newState)
-                // const chairList = newState.chairs.map(id => newState[id]);
-                // chairList.push(action.chair);
                 return newState;
             }
             return {
