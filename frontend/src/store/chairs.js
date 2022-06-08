@@ -53,7 +53,7 @@ export const createChair = chair => async dispatch => {
         }
     }
 
-    const res = await csrfFetch('/api/chairs', {
+    const res = await csrfFetch('/api/chairs/', {
         method: 'POST',
         headers: {"Content-Type": "multipart/form-data"},
         body: formData

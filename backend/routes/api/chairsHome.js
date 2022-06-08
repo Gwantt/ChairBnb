@@ -2,8 +2,6 @@ const router = require('express').Router();
 const asyncHandler = require('express-async-handler');
 const db = require('../../db/models');
 const {
-    singleMulterUpload,
-    singlePublicFileUpload,
     multipleMulterUpload,
     multiplePublicFileUpload,
   } = require("../../awsS3");
@@ -16,6 +14,14 @@ router.get('/', asyncHandler(async (req, res, next) => {
     return res.json(chairs)
 }))
 
+
+router.post('/search', asyncHandler(async (req, res, next) => {
+    const { searchParams } = req.body
+
+    
+
+    console.log('search', searchParams)
+}))
 
 router.post('/', multipleMulterUpload("images"), asyncHandler(async (req, res, next)  => {
     const { userId, address, city, state, country, name, price } = req.body

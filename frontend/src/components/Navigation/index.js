@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './Navigation.css'
 import ProfileButton from './ProfileButton';
 import logo from '../../images/logo.png'
 import DemoUser from '../DemoUser';
 import { motion } from 'framer-motion';
+import * as searchActions from '../../store/search'
+
 // import './Navgation.css'
 
 
 function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
     const [searchContent, setSearchContent] = useState('')
-
+    const dispatch = useDispatch()
     let sessionLinks;
     if (sessionUser) {
         sessionLinks = (
@@ -37,8 +39,12 @@ function Navigation({ isLoaded }) {
     const handleSubmit = e => {
         e.preventDefault()
 
-
+        console.log('hi hi hi')
+        const payload = {
+            searchParams: searchContent
+        }
         //dispatch search thunk using search params
+        dispatch(searchActions.searchThunk(payload))
         //load the search results on the page instead of everything else
 
 
