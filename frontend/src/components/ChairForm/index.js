@@ -36,9 +36,10 @@ const ChairForm = () => {
         if (country.length < 3) errors.push('Please Enter a Valid Country ');
         if (name.length < 3) errors.push('Name must be 3 characters or longer ');
         if (price <= 0) errors.push('Please enter a price');
+        if (images.length < 3) errors.push('Please choose 3 images')
 
         setErrors(errors);
-    }, [address, city, country, name, price])
+    }, [address, city, country, name, price, images])
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -110,13 +111,6 @@ const ChairForm = () => {
                     />
                     <input
                         className='formItem'
-                        type='file'
-                        multiple
-                        required
-                        onChange={updateFiles}
-                    />
-                    <input
-                        className='formItem'
                         type='input'
                         placeholder='Name of Chair'
                         value={name}
@@ -128,6 +122,13 @@ const ChairForm = () => {
                         placeholder='Price'
                         value={price}
                         onChange={e => setPrice(e.target.value)}
+                    />
+                    <input
+                        className='formItem'
+                        type='file'
+                        multiple
+                        required
+                        onChange={updateFiles}
                     />
                     <button className='buttons grow' type='submit'>Create New Chair</button>
                     <button className='buttons grow' type='button' onClick={() => history.push('/')}>Cancel</button>

@@ -59,6 +59,7 @@ button:hover {
 .logoLi {
     display: flex;
     justify-content: center;
+    width: 110em
 }
 
 .logoDiv {

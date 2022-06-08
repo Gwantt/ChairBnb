@@ -45,6 +45,7 @@ img {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
+    width: 110em;
 }
 
 .chairName {
@@ -54,6 +55,7 @@ img {
 .containerDiv {
     display: flex;
     justify-content: center;
+    width: 110em;
 }
 
 .selectedChairDiv {
@@ -101,10 +103,12 @@ p {
 /* .inner {
     position: absolute;
 } */
-/* .selectedContainer {
+
+.selectedContainer {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 110em;
 }
 
 
