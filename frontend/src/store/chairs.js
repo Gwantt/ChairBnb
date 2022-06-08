@@ -151,9 +151,6 @@ const chairReducer = (state = initialState, action) => {
                     ...state,
                     [action.chair.id]: action.chair
                 };
-                // console.log('New State --> ', newState)
-                // const chairList = newState.chairs.map(id => newState[id]);
-                // chairList.push(action.chair);
                 return newState;
             }
             return {

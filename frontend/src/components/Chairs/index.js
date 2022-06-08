@@ -13,13 +13,23 @@ const Chairs = () => {
     }, [dispatch])
 
     const chairs = useSelector(state => state.chair);
-
+    const searches = useSelector(state => state.search)
+    const [searchData, setSearchData] = useState(false)
     const chairData = Object.values(chairs)
+    const searchRes = Object.values(searches)
 
-    return (
-        <>
+    useEffect(() => {
+        if (searches) {
+            setSearchData(true)
+        } else {
+            setSearchData(false)
+        }
+    }, [searches])
+
+    if (Object.keys(searches).length !== 0) {
+        return (
             <div className='chairCard'>
-                {chairData.map((chair, idx) => (
+                {searchRes.map((chair, idx) => (
                     <motion.a href={`/chairs/${chair.id}`} className='chairDiv' key={idx} initial={{ opacity: 0, translateY: 50 }} animate={{ opacity: 1, translateY: 0 }} transition={{ duration: 1.5 }}>
                         <img src={chair?.image1} className='charImg' alt={chair.name} width='250px' height='250px' />
                         <p>${chair.price} / night</p>
@@ -27,8 +37,23 @@ const Chairs = () => {
                     </motion.a>
                 ))}
             </div>
-        </>
-    )
+        )
+    } else {
+        return (
+            <>
+                <div className='chairCard'>
+                    {chairData.map((chair, idx) => (
+                        <motion.a href={`/chairs/${chair.id}`} className='chairDiv' key={idx} initial={{ opacity: 0, translateY: 50 }} animate={{ opacity: 1, translateY: 0 }} transition={{ duration: 1.5 }}>
+                            <img src={chair?.image1} className='charImg' alt={chair.name} width='250px' height='250px' />
+                            <p>${chair.price} / night</p>
+                            <p>{chair.name}</p>
+                        </motion.a>
+                    ))}
+                </div>
+            </>
+        )
+    }
+
 }
 
 export default Chairs;

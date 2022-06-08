@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const asyncHandler = require('express-async-handler');
 const db = require('../../db/models');
+const Sequelize = require('sequelize');
+
 const {
     multipleMulterUpload,
     multiplePublicFileUpload,
@@ -17,10 +19,23 @@ router.get('/', asyncHandler(async (req, res, next) => {
 
 router.post('/search', asyncHandler(async (req, res, next) => {
     const { searchParams } = req.body
+    console.log(searchParams, '\n ^')
+    if(searchParams === '') {
+        const chair = await db.Spot.findAll()
+        console.log(chair)
+        return res.json(chair)
+    }
 
-    
+    const chair = await db.Spot.findAll({
+        where: {
+            name: {
+                [Sequelize.Op.iLike]: `%${searchParams}%`
+            }
+        }
+    })
 
     console.log('search', searchParams)
+    return res.json(chair)
 }))
 
 router.post('/', multipleMulterUpload("images"), asyncHandler(async (req, res, next)  => {

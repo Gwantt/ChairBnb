@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect, useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import './Navigation.css'
 import ProfileButton from './ProfileButton';
@@ -13,7 +13,10 @@ import * as searchActions from '../../store/search'
 
 function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
+    const { id } = useParams()
+    const history = useHistory()
     const [searchContent, setSearchContent] = useState('')
+
     const dispatch = useDispatch()
     let sessionLinks;
     if (sessionUser) {
@@ -30,7 +33,7 @@ function Navigation({ isLoaded }) {
             <>
                 <NavLink activeClassName='active' className='aButton' to='/login'>Log In</NavLink>
                 <NavLink activeClassName='active' className='aButton' to='/signup'>Sign Up</NavLink>
-                <NavLink activeClassName='active' className='aButton' to='/chairs'>Chair Listings</NavLink>
+                <NavLink activeClassName='active' className='aButton' to='/chairs' >Chair Listings</NavLink>
                 <DemoUser />
             </>
         )
@@ -38,15 +41,13 @@ function Navigation({ isLoaded }) {
 
     const handleSubmit = e => {
         e.preventDefault()
-
-        console.log('hi hi hi')
+        history.push('/chairs')
         const payload = {
             searchParams: searchContent
         }
         //dispatch search thunk using search params
         dispatch(searchActions.searchThunk(payload))
         //load the search results on the page instead of everything else
-
 
     }
 
@@ -70,6 +71,7 @@ function Navigation({ isLoaded }) {
                     <input
                         type='text'
                         value={searchContent}
+                        placeholder='Search For Chairs'
                         onChange={e => setSearchContent(e.target.value)}
                     />
                 </form>

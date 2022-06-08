@@ -24,8 +24,15 @@ export const searchThunk = searchParam => async dispatch => {
 
     if(res.ok) {
         const chairs = await res.json()
+        console.log('searched Chairs => ', chairs)
+        dispatch(clear())
         dispatch(search(chairs))
     }
+}
+
+export const clearSearchThunk = () => dispatch => {
+    console.log('clearing')
+    dispatch(clear())
 }
 
 const searchReducer = (state = {}, action) => {
