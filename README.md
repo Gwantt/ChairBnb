@@ -45,6 +45,7 @@ rent their own chairs to other people.
 * Logged in users can add chair listings, and edit or remove the ones they have created
 * Logged out users are able to view chair listings but cannot add their own listings
 ![image](https://user-images.githubusercontent.com/65691441/173668893-afd082bb-ea8a-470e-b367-b3b13aa5e538.png)
+![image](https://user-images.githubusercontent.com/65691441/173669669-2759e35e-0938-4d67-bd95-fc927e3d9135.png)
 
 3. Reviews
 * Logged in users can also leave reviews on chairs and delete their reviews
