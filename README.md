@@ -37,11 +37,16 @@ rent their own chairs to other people.
 1. User Authentication
 * Users can sign up, log in, and log out.
 * Users can log in via a demo user button
+![image](https://user-images.githubusercontent.com/65691441/173669470-f691a2f5-975a-4d1a-b441-168563972b0e.png)
+![image](https://user-images.githubusercontent.com/65691441/173669487-aefc2b0d-9fdf-4383-8aa2-053829844fa1.png)
+
 
 2. Chairs
 * Logged in users can add chair listings, and edit or remove the ones they have created
 * Logged out users are able to view chair listings but cannot add their own listings
+![image](https://user-images.githubusercontent.com/65691441/173668893-afd082bb-ea8a-470e-b367-b3b13aa5e538.png)
 
 3. Reviews
-* Logged in users can also leave reviews on chairs as well as edit and delete their own reviews
+* Logged in users can also leave reviews on chairs and delete their reviews
 * All users can view chairs and reviews associated to them
+![image](https://user-images.githubusercontent.com/65691441/173669158-4496674c-03df-49c9-93c1-23a2d404f75b.png)
