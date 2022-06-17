@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { editChair, getChair } from "../../store/chairs";
+import { deleteChair } from "../../store/chairs";
 import './editchair.css'
 
 const EditChair = ({ chair, hideForm }) => {
@@ -137,6 +138,10 @@ const EditChair = ({ chair, hideForm }) => {
                         onChange={updateFiles}
                     />
                     <button className="buttons grow" type="submit" disabled={errors.length > 0}>Update Chair</button>
+                    <button className="buttons grow" type='submit' style={{marginLeft:'2px', marginRight:'2px'}} onClick={() => {
+                        dispatch(deleteChair(selectedChair[0].id))
+                        history.push('/chairs')
+                    }}>Delete Chair</button>
                     <button className="buttons grow" type="button" onClick={handleCancelClick}>Cancel</button>
                 </form>
             </div>
