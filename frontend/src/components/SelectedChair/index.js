@@ -57,12 +57,6 @@ const SelectedChair = () => {
         content = (
             <>
                 <EditChair chair={chair} hideForm={() => setShowEditForm(false)} />
-                <>
-                    <button onClick={() => {
-                        dispatch(deleteChair(id))
-                        history.push('/chairs')
-                    }}>Delete Chair Listing</button>
-                </>
             </>
         )
     }
